@@ -30,6 +30,13 @@ class MockingBirdTests: XCTestCase {
         XCTAssertEqual(2, mock.getNumber(TestStruct(num: 3, name: "Yo")))
         XCTAssertEqual(9, mock.getNumber(thirdStruct))
     }
+
+    func testLastInWins() {
+        mock.mb.when("say", [2], thenReturn: "One")
+        mock.mb.when("say", [2], thenReturn: "Two")
+
+        XCTAssertEqual("Two", mock.say(2))
+    }
 }
 
 struct TestStruct {
