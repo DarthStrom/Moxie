@@ -12,22 +12,28 @@ class MockingBirdTests: XCTestCase {
         XCTAssertEqual("What's up", mock.greet())
     }
 
-    func testWhenCanStubAnotherFunction() {
-        mock.mb.when("greet", thenReturn: "Yo")
+    func testWhenCanStubConditionally() {
+        mock.mb.when("say", [1], thenReturn: "One")
+        mock.mb.when("say", [2], thenReturn: "Two")
 
-        XCTAssertEqual("Yo", mock.greet())
+        XCTAssertEqual("One", mock.say(1))
+        XCTAssertEqual("Two", mock.say(2))
     }
 }
 
-protocol GreetsYou {
+protocol CanBeMocked {
     func greet() -> String
+    func say(_ number: Int) -> String
 }
 
-struct MockGreeter: GreetsYou {
+struct MockGreeter: CanBeMocked {
     var mb = MockingBird()
 
     func greet() -> String {
-        print(mb.valueFor("greet"))
         return mb.valueFor("greet") ?? ""
+    }
+
+    func say(_ number: Int) -> String {
+        return mb.valueFor("say", [number]) ?? ""
     }
 }
