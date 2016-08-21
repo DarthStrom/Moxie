@@ -11,7 +11,7 @@
 		966FDECA1D6A3FEA00774132 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 966FDEC81D6A3FEA00774132 /* README.md */; };
 		_LinkFileRef_MockingBird_via_MockingBirdTests /* MockingBird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_MockingBird" /* MockingBird.framework */; };
 		__src_cc_ref_Sources/MockingBird.swift /* MockingBird.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/MockingBird.swift /* MockingBird.swift */; };
-		__src_cc_ref_Tests/MockingBirdTests/MockingBirdTests.swift /* MockingBirdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/MockingBirdTests/MockingBirdTests.swift /* MockingBirdTests.swift */; };
+		__src_cc_ref_Tests/MockingBirdTests/MockingBirdTests.swift /* StubbingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/MockingBirdTests/MockingBirdTests.swift /* StubbingTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +30,7 @@
 		__PBXFileRef_MockingBird.xcodeproj/Configs/Project.xcconfig /* MockingBird.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MockingBird.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/MockingBird.swift /* MockingBird.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockingBird.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/MockingBirdTests/MockingBirdTests.swift /* MockingBirdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockingBirdTests.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/MockingBirdTests/MockingBirdTests.swift /* StubbingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubbingTests.swift; sourceTree = "<group>"; };
 		"_____Product_MockingBird" /* MockingBird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MockingBird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"_____Product_MockingBirdTests" /* MockingBirdTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = MockingBirdTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -112,7 +112,7 @@
 		"_______Group_MockingBirdTests" /* MockingBirdTests */ = {
 			isa = PBXGroup;
 			children = (
-				__PBXFileRef_Tests/MockingBirdTests/MockingBirdTests.swift /* MockingBirdTests.swift */,
+				__PBXFileRef_Tests/MockingBirdTests/MockingBirdTests.swift /* StubbingTests.swift */,
 			);
 			name = MockingBirdTests;
 			path = Tests/MockingBirdTests;
@@ -203,7 +203,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				__src_cc_ref_Tests/MockingBirdTests/MockingBirdTests.swift /* MockingBirdTests.swift in Sources */,
+				__src_cc_ref_Tests/MockingBirdTests/MockingBirdTests.swift /* StubbingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
