@@ -2,9 +2,9 @@ import XCTest
 
 import MockingBird
 
-class MockingBirdTests: XCTestCase {
+class StubbingTests: XCTestCase {
 
-    let mock = MockGreeter()
+    let mock = MockHub()
 
     func testWhenCanStubAFunction() {
         mock.mb.when("greet", thenReturn: "What's up")
@@ -44,13 +44,13 @@ struct TestStruct {
     let name: String
 }
 
-protocol CanBeMocked {
+protocol InfoHub {
     func greet() -> String
     func say(_ number: Int) -> String
     func getNumber(_ s: TestStruct) -> Int
 }
 
-struct MockGreeter: CanBeMocked {
+struct MockHub: InfoHub {
     var mb = MockingBird()
 
     func greet() -> String {
