@@ -1,13 +1,14 @@
-public struct MockingBird {
+public class MockingBird {
+
+    var returnValues = [String: String]()
 
     public init() {}
 
-    public func create() -> () -> String {
-        return { return "What's up" }
+    public func valueFor(_ function: String) -> String? {
+        return returnValues[function]
     }
 
-    public func when<T>(_ call: T, thenReturn result: String) {
-
+    public func when(_ function: String, thenReturn value: String) {
+        returnValues[function] = value
     }
-
 }

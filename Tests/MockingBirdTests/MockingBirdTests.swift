@@ -4,15 +4,30 @@ import MockingBird
 
 class MockingBirdTests: XCTestCase {
 
-    var mb = MockingBird()
+    let mock = MockGreeter()
 
     func testWhenCanStubAFunction() {
-        let testDouble = mb.create()
-        mb.when(testDouble(), thenReturn: "What's up")
+        mock.mb.when("greet", thenReturn: "What's up")
 
-        let result = testDouble()
-
-        XCTAssertEqual("What's up", result)
+        XCTAssertEqual("What's up", mock.greet())
     }
 
+    func testWhenCanStubAnotherFunction() {
+        mock.mb.when("greet", thenReturn: "Yo")
+
+        XCTAssertEqual("Yo", mock.greet())
+    }
+}
+
+protocol GreetsYou {
+    func greet() -> String
+}
+
+struct MockGreeter: GreetsYou {
+    var mb = MockingBird()
+
+    func greet() -> String {
+        print(mb.valueFor("greet"))
+        return mb.valueFor("greet") ?? ""
+    }
 }
