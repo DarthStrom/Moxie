@@ -1,0 +1,220 @@
+// !$*UTF8*$!
+{
+    archiveVersion = 1;
+    classes = {};
+    objectVersion = 46;
+    rootObject = __RootObject_;
+    objects = {
+        __RootObject_ = {
+            isa = PBXProject;
+            attributes = {LastUpgradeCheck = 9999;};
+            buildConfigurationList = ___RootConfs_;
+            compatibilityVersion = 'Xcode 3.2';
+            developmentRegion = English;
+            hasScannedForEncodings = 0;
+            knownRegions = (en);
+            mainGroup = ___RootGroup_;
+            productRefGroup = ____Products_;
+            projectDirPath = '';
+            projectRoot = '';
+            targets = (______Target_MockingBird, ______Target_MockingBirdTests);
+        };
+        '__PBXFileRef_Package.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            path = 'Package.swift';
+            sourceTree = '<group>';
+        };
+        ___RootGroup_ = {
+            isa = PBXGroup;
+            children = ('__PBXFileRef_Package.swift', _____Configs_, _____Sources_,  Dependencies_, _______Tests_, ____Products_);
+            sourceTree = '<group>';
+        };
+        _______Group_MockingBird = {
+            isa = PBXGroup;
+            name = 'MockingBird';
+            path = 'Sources';
+            sourceTree = '<group>';
+            children = ('__PBXFileRef_Sources/MockingBird.swift');
+        };
+        '__PBXFileRef_Sources/MockingBird.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            path = 'MockingBird.swift';
+            sourceTree = '<group>';
+        };
+        ______Target_MockingBird = {
+            isa = PBXNativeTarget;
+            buildConfigurationList = _______Confs_MockingBird;
+            buildPhases = (CompilePhase_MockingBird, ___LinkPhase_MockingBird);
+            buildRules = ();
+            dependencies = ();
+            name = 'MockingBird';
+            productName = MockingBird;
+            productReference = _____Product_MockingBird;
+            productType = 'com.apple.product-type.framework';
+        };
+        _____Product_MockingBird = {
+            isa = PBXFileReference;
+            explicitFileType = 'wrapper.framework';
+            path = 'MockingBird.framework';
+            sourceTree = BUILT_PRODUCTS_DIR;
+        };
+        CompilePhase_MockingBird = {
+            isa = PBXSourcesBuildPhase;
+            files = ('__src_cc_ref_Sources/MockingBird.swift');
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        '__src_cc_ref_Sources/MockingBird.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Sources/MockingBird.swift';
+        };
+        ___LinkPhase_MockingBird = {
+            isa = PBXFrameworksBuildPhase;
+            files = ();
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        _______Confs_MockingBird = {
+            isa = XCConfigurationList;
+            buildConfigurations = (___DebugConf_MockingBird, _ReleaseConf_MockingBird);
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Debug;
+        };
+        ___DebugConf_MockingBird = {
+            isa = XCBuildConfiguration;
+            buildSettings = { SWIFT_VERSION = '3.0'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'MockingBird.xcodeproj/MockingBird_Info.plist'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; PRODUCT_BUNDLE_IDENTIFIER = 'MockingBird'; PRODUCT_NAME = '$(TARGET_NAME:c99extidentifier)'; OTHER_LDFLAGS = '$(inherited)'; };
+            name = Debug;
+        };
+        _ReleaseConf_MockingBird = {
+            isa = XCBuildConfiguration;
+            buildSettings = { SWIFT_VERSION = '3.0'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'MockingBird.xcodeproj/MockingBird_Info.plist'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; PRODUCT_BUNDLE_IDENTIFIER = 'MockingBird'; PRODUCT_NAME = '$(TARGET_NAME:c99extidentifier)'; OTHER_LDFLAGS = '$(inherited)'; };
+            name = Release;
+        };
+        __Dependency_MockingBird = {
+            isa = PBXTargetDependency;
+            target = ______Target_MockingBird;
+        };
+        _______Group_MockingBirdTests = {
+            isa = PBXGroup;
+            name = 'MockingBirdTests';
+            path = 'Tests/MockingBirdTests';
+            sourceTree = '<group>';
+            children = ('__PBXFileRef_Tests/MockingBirdTests/MockingBirdTests.swift');
+        };
+        '__PBXFileRef_Tests/MockingBirdTests/MockingBirdTests.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            path = 'MockingBirdTests.swift';
+            sourceTree = '<group>';
+        };
+        ______Target_MockingBirdTests = {
+            isa = PBXNativeTarget;
+            buildConfigurationList = _______Confs_MockingBirdTests;
+            buildPhases = (CompilePhase_MockingBirdTests, ___LinkPhase_MockingBirdTests);
+            buildRules = ();
+            dependencies = (__Dependency_MockingBird);
+            name = 'MockingBirdTests';
+            productName = MockingBirdTests;
+            productReference = _____Product_MockingBirdTests;
+            productType = 'com.apple.product-type.bundle.unit-test';
+        };
+        _____Product_MockingBirdTests = {
+            isa = PBXFileReference;
+            explicitFileType = 'compiled.mach-o.wrapper.cfbundle';
+            path = 'MockingBirdTests.xctest';
+            sourceTree = BUILT_PRODUCTS_DIR;
+        };
+        CompilePhase_MockingBirdTests = {
+            isa = PBXSourcesBuildPhase;
+            files = ('__src_cc_ref_Tests/MockingBirdTests/MockingBirdTests.swift');
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        '__src_cc_ref_Tests/MockingBirdTests/MockingBirdTests.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Tests/MockingBirdTests/MockingBirdTests.swift';
+        };
+        ___LinkPhase_MockingBirdTests = {
+            isa = PBXFrameworksBuildPhase;
+            files = (_LinkFileRef_MockingBird_via_MockingBirdTests);
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        _LinkFileRef_MockingBird_via_MockingBirdTests = {
+            isa = PBXBuildFile;
+            fileRef = _____Product_MockingBird;
+        };
+        _______Confs_MockingBirdTests = {
+            isa = XCConfigurationList;
+            buildConfigurations = (___DebugConf_MockingBirdTests, _ReleaseConf_MockingBirdTests);
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Debug;
+        };
+        ___DebugConf_MockingBirdTests = {
+            isa = XCBuildConfiguration;
+            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '@loader_path/../Frameworks'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'MockingBird.xcodeproj/MockingBirdTests_Info.plist'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; EMBEDDED_CONTENT_CONTAINS_SWIFT = 'YES'; OTHER_LDFLAGS = '$(inherited)'; SWIFT_VERSION = '3.0'; };
+            name = Debug;
+        };
+        _ReleaseConf_MockingBirdTests = {
+            isa = XCBuildConfiguration;
+            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '@loader_path/../Frameworks'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'MockingBird.xcodeproj/MockingBirdTests_Info.plist'; EMBEDDED_CONTENT_CONTAINS_SWIFT = 'YES'; OTHER_LDFLAGS = '$(inherited)'; SWIFT_VERSION = '3.0'; };
+            name = Release;
+        };
+        __Dependency_MockingBirdTests = {
+            isa = PBXTargetDependency;
+            target = ______Target_MockingBirdTests;
+        };
+        '__PBXFileRef_MockingBird.xcodeproj/Configs/Project.xcconfig' = {
+            isa = PBXFileReference;
+            lastKnownFileType = text.xcconfig;
+            path = 'MockingBird.xcodeproj/Configs/Project.xcconfig';
+            sourceTree = '<group>';
+        };
+        _____Configs_ = {
+            isa = PBXGroup;
+            children = ('__PBXFileRef_MockingBird.xcodeproj/Configs/Project.xcconfig');
+            name = Configs;
+            sourceTree = '<group>';
+        };
+        _____Sources_ = {
+            isa = PBXGroup;
+            children = (_______Group_MockingBird);
+            name = Sources;
+            sourceTree = '<group>';
+        };
+        _______Tests_ = {
+            isa = PBXGroup;
+            children = (_______Group_MockingBirdTests);
+            name = Tests;
+            sourceTree = '<group>';
+        };
+       TestProducts_ = {
+            isa = PBXGroup;
+            children = (_____Product_MockingBirdTests);
+            name = Tests;
+            sourceTree = '<group>';
+        };
+        ____Products_ = {
+            isa = PBXGroup;
+            children = (TestProducts_, _____Product_MockingBird);
+            name = Products;
+            sourceTree = '<group>';
+        };
+        _______Debug_ = {
+            isa = XCBuildConfiguration;
+            baseConfigurationReference = '__PBXFileRef_MockingBird.xcodeproj/Configs/Project.xcconfig';
+            buildSettings = {};
+            name = Debug;
+        };
+        _____Release_ = {
+            isa = XCBuildConfiguration;
+            baseConfigurationReference = '__PBXFileRef_MockingBird.xcodeproj/Configs/Project.xcconfig';
+            buildSettings = {};
+            name = Release;
+        };
+        ___RootConfs_ = {
+            isa = XCConfigurationList;
+            buildConfigurations = (_______Debug_, _____Release_);
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Debug;
+        };
+    };
+}
