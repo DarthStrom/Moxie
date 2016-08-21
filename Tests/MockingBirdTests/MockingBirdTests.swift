@@ -1,12 +1,18 @@
 import XCTest
 
-@testable import MockingBird
+import MockingBird
 
 class MockingBirdTests: XCTestCase {
 
-    func testTestsRun() {
-        XCTAssertTrue(false)
+    var mb = MockingBird()
+
+    func testWhenCanStubAFunction() {
+        let testDouble = mb.create()
+        mb.when(testDouble(), thenReturn: "What's up")
+
+        let result = testDouble()
+
+        XCTAssertEqual("What's up", result)
     }
 
 }
-
