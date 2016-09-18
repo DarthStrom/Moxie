@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		966FDEC91D6A3FEA00774132 /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = 966FDEC71D6A3FEA00774132 /* LICENSE.md */; };
-		966FDECA1D6A3FEA00774132 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 966FDEC81D6A3FEA00774132 /* README.md */; };
 		_LinkFileRef_MockingBird_via_MockingBirdTests /* MockingBird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_MockingBird" /* MockingBird.framework */; };
 		__src_cc_ref_Sources/MockingBird.swift /* MockingBird.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/MockingBird.swift /* MockingBird.swift */; };
 		__src_cc_ref_Tests/MockingBirdTests/MockingBirdTests.swift /* StubbingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/MockingBirdTests/MockingBirdTests.swift /* StubbingTests.swift */; };
@@ -25,8 +23,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		966FDEC71D6A3FEA00774132 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
-		966FDEC81D6A3FEA00774132 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		__PBXFileRef_MockingBird.xcodeproj/Configs/Project.xcconfig /* MockingBird.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MockingBird.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/MockingBird.swift /* MockingBird.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockingBird.swift; sourceTree = "<group>"; };
@@ -65,9 +61,7 @@
 		"___RootGroup_" = {
 			isa = PBXGroup;
 			children = (
-				966FDEC71D6A3FEA00774132 /* LICENSE.md */,
 				__PBXFileRef_Package.swift /* Package.swift */,
-				966FDEC81D6A3FEA00774132 /* README.md */,
 				"_____Configs_" /* Configs */,
 				"_____Sources_" /* Sources */,
 				"_______Tests_" /* Tests */,
@@ -193,8 +187,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				966FDECA1D6A3FEA00774132 /* README.md in Sources */,
-				966FDEC91D6A3FEA00774132 /* LICENSE.md in Sources */,
 				__src_cc_ref_Sources/MockingBird.swift /* MockingBird.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
