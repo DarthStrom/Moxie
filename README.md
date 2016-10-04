@@ -6,7 +6,7 @@ Stay tuned... this is a work in progress.
 
 ## Stubbing
 
-First, make a mock object with a mutable instance of MockingBird.
+First, make a mock object with an instance of MockingBird.
 
 Then in the function you want to stub you can use `valueFor` to get the value to return.
 
@@ -16,7 +16,7 @@ In your test, you can use `when` to set the stubbed value.
 import MockingBird
 
 struct MockStruct {
-    var mb = MockingBird()
+    let mb = MockingBird()
 
     func foo() -> String {
         return mb.valueFor("foo") ?? ""
@@ -41,7 +41,7 @@ You can also stub for specific set of arguments:
 import MockingBird
 
 struct MockStruct {
-    var mb = MockingBird()
+    let mb = MockingBird()
 
     func validate(id: Int, name: String) -> Bool {
         return mb.valueFor("validate", [id, name]) ?? false
