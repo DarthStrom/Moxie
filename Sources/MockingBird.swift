@@ -78,25 +78,42 @@ public class MockingBird {
 
     // MARK: - private
 
-    func getKey(_ parameters: [Any]) -> String {
+    private func getKey(_ parameters: [Any]) -> String {
         return "\(parameters.description)"
     }
 
-    func getDescription(_ function: String) -> String {
+    private func getDescription(_ function: String) -> String {
         let stubbingCount = stubbings[function]?.count ?? 0
-        let summary = "This mock has \(stubbingCount) stubbing\(stubbingCount == 1 ? "" : "s") and 0 invocations."
+        let invocationCount = getInvocationCount(calls[function])
+        var summary = "This function has \(stubbingCount) stubbing\(stubbingCount == 1 ? "" : "s") and \(invocationCount) invocation\(invocationCount == 1 ? "" : "s")."
         if stubbingCount > 0 {
-            return appendStubbingDescription(summary, stubbings[function])
-        } else {
-            return summary
+            appendStubbingDescription(&summary, stubbings[function])
         }
+        if invocationCount > 0 {
+            appendInvocationDescription(&summary, calls[function])
+        }
+        return summary
     }
 
-    func appendStubbingDescription(_ appendTo: String, _ stubbing: Dictionary<String, Any>?) -> String {
-        let stubbingHeading = "\n\n  Stubbings:\n"
+    private func appendStubbingDescription(_ appendTo: inout String, _ stubbing: Dictionary<String, Any>?) {
+        let stubbingHeading = "\n\n  Stubbings:"
         let stubbingsList = stubbing?.reduce("") { initial, combine in
-            return initial + "  - When called with `\(combine.key)`, then return `\(combine.value)`."
+            return initial + "\n  - When called with `\(combine.key)`, then return `\(combine.value)`."
             } ?? ""
-        return appendTo + stubbingHeading + stubbingsList
+        appendTo = appendTo + stubbingHeading + stubbingsList
+    }
+
+    private func appendInvocationDescription(_ appendTo: inout String, _ invocation: Dictionary<String, Int>?) {
+        let invocationHeading = "\n\n  Invocations:"
+        let invocationsList = invocation?.reduce("") { initial, combine in
+            return initial + "\n  - Called with `\(combine.key)`\(combine.value == 1 ? "" : " x" + "\(combine.value)")."
+        } ?? ""
+        appendTo = appendTo + invocationHeading + invocationsList
+    }
+
+    private func getInvocationCount(_ function: [String: Int]?) -> Int {
+        return function?.reduce(0) { initial, combine in
+            return initial + combine.value
+        } ?? 0
     }
 }
