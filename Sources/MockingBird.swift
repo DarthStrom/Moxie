@@ -1,7 +1,7 @@
 public class MockingBird {
 
-    var calls = [String: [String: Int]]()
     var stubbings = [String: [String: Any]]()
+    var invocations = [String: [String: Int]]()
 
     public init() {}
 
@@ -35,7 +35,7 @@ public class MockingBird {
     ///
     /// - returns: The number of invocations of the function with the parameters specified
     public func callCount(_ function: String, _ parameters: [Any] = []) -> Int {
-        return calls[function]?[getKey(parameters)] ?? 0
+        return invocations[function]?[getKey(parameters)] ?? 0
     }
 
     /// Determine whether a function was invoked with the given parameters
@@ -54,12 +54,12 @@ public class MockingBird {
     /// - parameter parameters: An array containgin the parameters of the invoked function
     public func record(_ function: String, _ parameters: [Any] = []) {
         let key = getKey(parameters)
-        if calls[function] == nil {
-            calls[function] = [key: 1]
-        } else if calls[function]![key] == nil {
-            calls[function]![key] = 1
+        if invocations[function] == nil {
+            invocations[function] = [key: 1]
+        } else if invocations[function]![key] == nil {
+            invocations[function]![key] = 1
         } else {
-            calls[function]![key]! += 1
+            invocations[function]![key]! += 1
         }
     }
 
@@ -69,7 +69,7 @@ public class MockingBird {
     ///
     /// - returns: The explain struct
     public func explain(_ function: String) -> Explain {
-        let callCount = calls[function]?.count ?? 0
+        let callCount = invocations[function]?.count ?? 0
         return Explain(
             callCount: callCount,
             description: getDescription(function)
@@ -84,31 +84,35 @@ public class MockingBird {
 
     private func getDescription(_ function: String) -> String {
         let stubbingCount = stubbings[function]?.count ?? 0
-        let invocationCount = getInvocationCount(calls[function])
-        var summary = "This function has \(stubbingCount) stubbing\(stubbingCount == 1 ? "" : "s") and \(invocationCount) invocation\(invocationCount == 1 ? "" : "s")."
-        if stubbingCount > 0 {
-            appendStubbingDescription(&summary, stubbings[function])
-        }
-        if invocationCount > 0 {
-            appendInvocationDescription(&summary, calls[function])
-        }
+        let invocationCount = getInvocationCount(invocations[function])
+        var summary = getDescriptionIntro(stubbingCount, invocationCount)
+        appendStubbingDescription(&summary, stubbings[function])
+        appendInvocationDescription(&summary, invocations[function])
         return summary
     }
 
-    private func appendStubbingDescription(_ appendTo: inout String, _ stubbing: Dictionary<String, Any>?) {
-        let stubbingHeading = "\n\n  Stubbings:"
-        let stubbingsList = stubbing?.reduce("") { initial, combine in
-            return initial + "\n  - When called with `\(combine.key)`, then return `\(combine.value)`."
-            } ?? ""
-        appendTo = appendTo + stubbingHeading + stubbingsList
+    private func getDescriptionIntro(_ stubbings: Int, _ invocations: Int) -> String {
+        return "This function has \(stubbings) stubbing\(stubbings == 1 ? "" : "s") and \(invocations) invocation\(invocations == 1 ? "" : "s")."
     }
 
-    private func appendInvocationDescription(_ appendTo: inout String, _ invocation: Dictionary<String, Int>?) {
-        let invocationHeading = "\n\n  Invocations:"
-        let invocationsList = invocation?.reduce("") { initial, combine in
-            return initial + "\n  - Called with `\(combine.key)`\(combine.value == 1 ? "" : " x" + "\(combine.value)")."
-        } ?? ""
-        appendTo = appendTo + invocationHeading + invocationsList
+    private func appendStubbingDescription(_ appendTo: inout String, _ function: Dictionary<String, Any>?) {
+        if function?.count ?? 0 > 0 {
+            let stubbingHeading = "\n\n  Stubbings:"
+            let stubbingsList = function?.reduce("") { initial, combine in
+                return initial + "\n  - When called with `\(combine.key)`, then return `\(combine.value)`."
+                } ?? ""
+            appendTo = appendTo + stubbingHeading + stubbingsList
+        }
+    }
+
+    private func appendInvocationDescription(_ appendTo: inout String, _ function: Dictionary<String, Int>?) {
+        if function?.count ?? 0 > 0 {
+            let invocationHeading = "\n\n  Invocations:"
+            let invocationsList = function?.reduce("") { initial, combine in
+                return initial + "\n  - Called with `\(combine.key)`\(combine.value == 1 ? "" : " x" + "\(combine.value)")."
+            } ?? ""
+            appendTo = appendTo + invocationHeading + invocationsList
+        }
     }
 
     private func getInvocationCount(_ function: [String: Int]?) -> Int {

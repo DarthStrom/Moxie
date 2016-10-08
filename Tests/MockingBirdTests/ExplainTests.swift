@@ -95,7 +95,7 @@ class ExplainTests: XCTestCase {
     func testExplainDescriptionWithBothStubbingsAndInvocations() {
         subject.mb.when("mirror", ["Michael Jackson"], thenReturn: "man")
         subject.mb.when("mirror", ["man"], thenReturn: "Michael Jackson")
-        
+
         subject.mirror("thursday")
 
         XCTAssertEqual(
