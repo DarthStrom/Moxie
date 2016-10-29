@@ -1,4 +1,5 @@
 # MockingBird
+[![Build Status](https://travis-ci.org/DarthStrom/MockingBird.svg?branch=master)](https://travis-ci.org/DarthStrom/MockingBird)
 
 A mocking library for Swift
 
