@@ -19,7 +19,7 @@ struct MockStruct {
     let mb = MockingBird()
 
     func foo() -> String {
-        return mb.valueFor("foo") ?? ""
+        return mb.valueFor(function: "foo") ?? ""
     }
 }
 
@@ -28,7 +28,7 @@ class StructTests: XCTestCase {
     let mock = MockStruct()
 
     func testItWorks() {
-        mock.mb.when("foo", thenReturn: "bar")
+        mock.mb.stub(function: "foo", return: "bar")
 
         XCTAssertEqual("bar", mock.foo())
     }
@@ -44,7 +44,7 @@ struct MockStruct {
     let mb = MockingBird()
 
     func validate(id: Int, name: String) -> Bool {
-        return mb.valueFor("validate", [id, name]) ?? false
+        return mb.valueFor(function: "validate", withParameters: [id, name]) ?? false
     }
 }
 
@@ -53,9 +53,9 @@ class StructTests: XCTestCase {
     let mock = MockStruct()
 
     func testItWorks() {
-        mock.mb.when("validate", [27, "George"], thenReturn: true)
+        mock.mb.stub(function: "validate", withParameters: [27, "George"], return: true)
 
-        XCTAssertTrue(mock.validate(27, "George"))
+        XCTAssertTrue(mock.validate(id: 27, name: "George"))
     }
 }
 ```
