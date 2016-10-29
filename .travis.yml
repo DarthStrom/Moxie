@@ -1,3 +1,5 @@
 language: objective-c
 osx_image: xcode8
-script: xcodebuild test -scheme MockingBird
+script:
+  - xcodebuild -scheme MockingBird build test
+
