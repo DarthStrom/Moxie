@@ -6,36 +6,36 @@ class StubbingTests: XCTestCase {
 
     let mock = MockHub()
 
-    func testWhenCanStubAFunction() {
-        mock.mb.when("greet", thenReturn: "What's up")
+    func testCanStubAFunction() {
+        mock.mb.stub(function: "greet", return: "What's up")
 
         XCTAssertEqual("What's up", mock.greet())
     }
 
-    func testWhenCanStubConditionally() {
-        mock.mb.when("say", [1], thenReturn: "One")
-        mock.mb.when("say", [2], thenReturn: "Two")
+    func testCanStubConditionally() {
+        mock.mb.stub(function: "say", withParameters: [1], return: "One")
+        mock.mb.stub(function: "say", withParameters: [2], return: "Two")
 
-        XCTAssertEqual("One", mock.say(1))
-        XCTAssertEqual("Two", mock.say(2))
+        XCTAssertEqual("One", mock.say(number: 1))
+        XCTAssertEqual("Two", mock.say(number: 2))
     }
 
     func testConditionalStubbingWithStructParams() {
-        mock.mb.when("getNumber", [TestStruct(num: 1, name: "Hi")], thenReturn: 5)
-        mock.mb.when("getNumber", [TestStruct(num: 3, name: "Yo")], thenReturn: 2)
+        mock.mb.stub(function: "getNumber", withParameters: [TestStruct(num: 1, name: "Hi")], return: 5)
+        mock.mb.stub(function: "getNumber", withParameters: [TestStruct(num: 3, name: "Yo")], return: 2)
         let thirdStruct = TestStruct(num: 7, name: "Third")
-        mock.mb.when("getNumber", [thirdStruct], thenReturn: 9)
+        mock.mb.stub(function: "getNumber", withParameters: [thirdStruct], return: 9)
 
-        XCTAssertEqual(5, mock.getNumber(TestStruct(num: 1, name: "Hi")))
-        XCTAssertEqual(2, mock.getNumber(TestStruct(num: 3, name: "Yo")))
-        XCTAssertEqual(9, mock.getNumber(thirdStruct))
+        XCTAssertEqual(5, mock.getNumber(fromStruct: TestStruct(num: 1, name: "Hi")))
+        XCTAssertEqual(2, mock.getNumber(fromStruct: TestStruct(num: 3, name: "Yo")))
+        XCTAssertEqual(9, mock.getNumber(fromStruct: thirdStruct))
     }
 
     func testLastInWins() {
-        mock.mb.when("say", [2], thenReturn: "One")
-        mock.mb.when("say", [2], thenReturn: "Two")
+        mock.mb.stub(function: "say", withParameters: [2], return: "One")
+        mock.mb.stub(function: "say", withParameters: [2], return: "Two")
 
-        XCTAssertEqual("Two", mock.say(2))
+        XCTAssertEqual("Two", mock.say(number: 2))
     }
 }
 
@@ -46,22 +46,22 @@ struct TestStruct {
 
 protocol InfoHub {
     func greet() -> String
-    func say(_ number: Int) -> String
-    func getNumber(_ s: TestStruct) -> Int
+    func say(number: Int) -> String
+    func getNumber(fromStruct: TestStruct) -> Int
 }
 
 struct MockHub: InfoHub {
     var mb = MockingBird()
 
     func greet() -> String {
-        return mb.valueFor("greet") ?? ""
+        return mb.valueFor(function: "greet") ?? ""
     }
 
-    func say(_ number: Int) -> String {
-        return mb.valueFor("say", [number]) ?? ""
+    func say(number: Int) -> String {
+        return mb.valueFor(function: "say", withParameters: [number]) ?? ""
     }
 
-    func getNumber(_ s: TestStruct) -> Int {
-        return mb.valueFor("getNumber", [s]) ?? 0
+    func getNumber(fromStruct s: TestStruct) -> Int {
+        return mb.valueFor(function: "getNumber", withParameters: [s]) ?? 0
     }
 }

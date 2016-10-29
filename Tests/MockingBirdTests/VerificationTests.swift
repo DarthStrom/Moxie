@@ -11,49 +11,49 @@ class VerificationTests: XCTestCase {
     }
 
     func testCallCountForZeroCalls() {
-        XCTAssertEqual(0, subject.mb.callCount("submit", ["nope"]))
+        XCTAssertEqual(0, subject.mb.callCount(forFunction: "submit", withParameters: ["nope"]))
     }
 
     func testCallCountForOneCall() {
-        subject.submit("yep")
+        subject.submit(description: "yep")
 
-        XCTAssertEqual(1, subject.mb.callCount("submit", ["yep"]))
+        XCTAssertEqual(1, subject.mb.callCount(forFunction: "submit", withParameters: ["yep"]))
     }
 
     func testCallCountForMultipleCalls() {
-        subject.submit("three")
-        subject.submit("three")
-        subject.submit("three")
+        subject.submit(description: "three")
+        subject.submit(description: "three")
+        subject.submit(description: "three")
 
-        XCTAssertEqual(3, subject.mb.callCount("submit", ["three"]))
+        XCTAssertEqual(3, subject.mb.callCount(forFunction: "submit", withParameters: ["three"]))
     }
 
     func testVerifyIsTrueIfCallCountWasOne() {
-        subject.submit("one")
+        subject.submit(description: "one")
 
-        XCTAssert(subject.mb.verify("submit", ["one"]))
+        XCTAssert(subject.mb.verify(function: "submit", calledWithParameters: ["one"]))
     }
 
     func testVerifyIsFalseIfCallCountWasZero() {
-        XCTAssertFalse(subject.mb.verify("submit", ["zero"]))
+        XCTAssertFalse(subject.mb.verify(function: "submit", calledWithParameters: ["zero"]))
     }
 
     func testVerifyIsTrueIfCallCountWasMoreThanOne() {
-        subject.submit("two")
-        subject.submit("two")
+        subject.submit(description: "two")
+        subject.submit(description: "two")
 
-        XCTAssert(subject.mb.verify("submit", ["two"]))
+        XCTAssert(subject.mb.verify(function: "submit", calledWithParameters: ["two"]))
     }
 }
 
 protocol Testable {
-    func submit(_ description: String)
+    func submit(description: String)
 }
 
 struct Tested: Testable {
     let mb = MockingBird()
 
-    func submit(_ description: String) {
-        mb.record("submit", [description])
+    func submit(description: String) {
+        mb.record(function: "submit", withParameters: [description])
     }
 }

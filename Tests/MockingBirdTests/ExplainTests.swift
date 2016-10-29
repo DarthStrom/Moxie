@@ -10,42 +10,24 @@ class ExplainTests: XCTestCase {
         subject = Explainer()
     }
 
-    func testExplainCallCountWithNoStubbingsOrInteractions() {
-        XCTAssertEqual(0, subject.mb.explain("doIt").callCount)
+    func testExplainWithNoStubbingsOrInteractions() {
+        XCTAssertEqual("This function has 0 stubbings and 0 invocations.", subject.mb.explain(function: "doIt"))
     }
 
-    func testExplainCallCountWithOneInteraction() {
-        subject.doIt("now")
-
-        XCTAssertEqual(1, subject.mb.explain("doIt").callCount)
-    }
-
-    func testExplainCallCountWithMultipleInteractions() {
-        subject.doIt("yesterday")
-        subject.doIt("today")
-        subject.doIt("tomorrow")
-
-        XCTAssertEqual(3, subject.mb.explain("doIt").callCount)
-    }
-
-    func testExplainDescriptionWithNoStubbingsOrInteractions() {
-        XCTAssertEqual("This function has 0 stubbings and 0 invocations.", subject.mb.explain("doIt").description)
-    }
-
-    func testExplainDescriptionWithOneStubbing() {
-        subject.mb.when("returnIt", thenReturn: "it")
+    func testExplainWithOneStubbing() {
+        subject.mb.stub(function: "returnIt", return: "it")
 
         XCTAssertEqual(
             "This function has 1 stubbing and 0 invocations.\n" +
             "\n" +
             "  Stubbings:\n" +
             "  - When called with `[]`, then return `it`.",
-            subject.mb.explain("returnIt").description)
+            subject.mb.explain(function: "returnIt"))
     }
 
-    func testExplainDescriptionWithMultipleStubbings() {
-        subject.mb.when("mirror", ["me"], thenReturn: "me")
-        subject.mb.when("mirror", ["you"], thenReturn: "you")
+    func testExplainWithMultipleStubbings() {
+        subject.mb.stub(function: "mirror", withParameters: ["me"], return: "me")
+        subject.mb.stub(function: "mirror", withParameters: ["you"], return: "you")
 
         XCTAssertEqual(
             "This function has 2 stubbings and 0 invocations.\n" +
@@ -53,23 +35,23 @@ class ExplainTests: XCTestCase {
             "  Stubbings:\n" +
             "  - When called with `[\"me\"]`, then return `me`.\n" +
             "  - When called with `[\"you\"]`, then return `you`.",
-            subject.mb.explain("mirror").description)
+            subject.mb.explain(function: "mirror"))
     }
 
-    func testExplainDescriptionWithAnInvocation() {
-        subject.doIt("now")
+    func testExplainWithAnInvocation() {
+        subject.doIt(param: "now")
 
         XCTAssertEqual(
             "This function has 0 stubbings and 1 invocation.\n" +
             "\n" +
             "  Invocations:\n" +
             "  - Called with `[\"now\"]`.",
-            subject.mb.explain("doIt").description)
+            subject.mb.explain(function: "doIt"))
     }
 
-    func testExplainDescriptionWithMultipleInvocations() {
-        subject.doIt("monday")
-        subject.doIt("tuesday")
+    func testExplainWithMultipleInvocations() {
+        subject.doIt(param: "monday")
+        subject.doIt(param: "tuesday")
 
         XCTAssertEqual(
             "This function has 0 stubbings and 2 invocations.\n" +
@@ -77,26 +59,26 @@ class ExplainTests: XCTestCase {
             "  Invocations:\n" +
             "  - Called with `[\"monday\"]`.\n" +
             "  - Called with `[\"tuesday\"]`.",
-            subject.mb.explain("doIt").description)
+            subject.mb.explain(function: "doIt"))
     }
 
-    func testExplainDescriptionWithMultipleInvocationsWithTheSameParameters() {
-        subject.doIt("wednesday")
-        subject.doIt("wednesday")
+    func testExplainWithMultipleInvocationsWithTheSameParameters() {
+        subject.doIt(param: "wednesday")
+        subject.doIt(param: "wednesday")
 
         XCTAssertEqual(
             "This function has 0 stubbings and 2 invocations.\n" +
             "\n" +
             "  Invocations:\n" +
             "  - Called with `[\"wednesday\"]` x2.",
-            subject.mb.explain("doIt").description)
+            subject.mb.explain(function: "doIt"))
     }
 
-    func testExplainDescriptionWithBothStubbingsAndInvocations() {
-        subject.mb.when("mirror", ["Michael Jackson"], thenReturn: "man")
-        subject.mb.when("mirror", ["man"], thenReturn: "Michael Jackson")
+    func testExplainWithBothStubbingsAndInvocations() {
+        subject.mb.stub(function: "mirror", withParameters: ["Michael Jackson"], return: "man")
+        subject.mb.stub(function: "mirror", withParameters: ["man"], return: "Michael Jackson")
 
-        subject.mirror("thursday")
+        subject.mirror(who: "thursday")
 
         XCTAssertEqual(
             "This function has 2 stubbings and 1 invocation.\n" +
@@ -107,23 +89,23 @@ class ExplainTests: XCTestCase {
             "\n" +
             "  Invocations:\n" +
             "  - Called with `[\"thursday\"]`.",
-            subject.mb.explain("mirror").description)
+            subject.mb.explain(function: "mirror"))
     }
 }
 
 protocol Explainable {
-    func doIt(_ param: String)
-    func mirror(_ who: String)
+    func doIt(param: String)
+    func mirror(who: String)
 }
 
 struct Explainer: Explainable {
     let mb = MockingBird()
 
-    func doIt(_ param: String) {
-        mb.record("doIt", [param])
+    func doIt(param: String) {
+        mb.record(function: "doIt", withParameters: [param])
     }
 
-    func mirror(_ who: String) {
-        mb.record("mirror", [who])
+    func mirror(who: String) {
+        mb.record(function: "mirror", withParameters: [who])
     }
 }

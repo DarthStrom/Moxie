@@ -7,53 +7,53 @@ public class MockingBird {
 
     /// Set a return value for a stubbed function call
     ///
-    /// - parameter function:   The name of the stubbed function
-    /// - parameter parameters: An array containing the parameters of the stubbed function call
-    /// - parameter value:      The value to return when the stubbed function is called
-    public func when<T>(_ function: String, _ parameters: [Any] = [], thenReturn value: T) {
+    /// - parameter function:       The name of the stubbed function
+    /// - parameter withParameters: An array containing the parameters of the stubbed function call
+    /// - parameter return:         The value to return when the stubbed function is called
+    public func stub<T>(function: String, withParameters parameters: [Any] = [], return value: T) {
         if stubbings[function] == nil {
-            stubbings[function] = [getKey(parameters): value]
+            stubbings[function] = [getKey(forParameters: parameters): value]
         } else {
-            stubbings[function]![getKey(parameters)] = value
+            stubbings[function]![getKey(forParameters: parameters)] = value
         }
     }
 
     /// Get the value that has been specified for the stubbed function
     ///
-    /// - parameter function:   The name of the stubbed function
-    /// - parameter parameters: An array containing the parameters of the stubbed function call
+    /// - parameter function:       The name of the stubbed function
+    /// - parameter withParameters: An array containing the parameters of the stubbed function call
     ///
     /// - returns: The previously specified value (via when) for the function call or nil if none was specified
-    public func valueFor<T>(_ function: String, _ parameters: [Any] = []) -> T? {
-        return stubbings[function]?[getKey(parameters)] as? T
+    public func valueFor<T>(function: String, withParameters parameters: [Any] = []) -> T? {
+        return stubbings[function]?[getKey(forParameters: parameters)] as? T
     }
 
     /// Get the number of invocations for the function with the parameters specified
     ///
-    /// - parameter function:   The name of the invoked function
-    /// - parameter parameters: An array containing the parameters of the invoked function
+    /// - parameter forFunction:    The name of the invoked function
+    /// - parameter withParameters: An array containing the parameters of the invoked function
     ///
     /// - returns: The number of invocations of the function with the parameters specified
-    public func callCount(_ function: String, _ parameters: [Any] = []) -> Int {
-        return invocations[function]?[getKey(parameters)] ?? 0
+    public func callCount(forFunction function: String, withParameters parameters: [Any] = []) -> Int {
+        return invocations[function]?[getKey(forParameters: parameters)] ?? 0
     }
 
     /// Determine whether a function was invoked with the given parameters
     ///
-    /// - parameter function:   The name of the invoked function
-    /// - parameter parameters: An array containing the parameters of the invoked function
+    /// - parameter function:             The name of the invoked function
+    /// - parameter calledWithParameters: An array containing the parameters of the invoked function
     ///
     /// - returns: True if the number of invocations is one or more
-    public func verify(_ function: String, _ parameters: [Any] = []) -> Bool {
-        return callCount(function, parameters) > 0
+    public func verify(function: String, calledWithParameters parameters: [Any] = []) -> Bool {
+        return callCount(forFunction: function, withParameters: parameters) > 0
     }
 
     /// Remember that a function was invoked with the given parameters
     ///
-    /// - parameter function:   The name of the invoked function
-    /// - parameter parameters: An array containgin the parameters of the invoked function
-    public func record(_ function: String, _ parameters: [Any] = []) {
-        let key = getKey(parameters)
+    /// - parameter function:       The name of the invoked function
+    /// - parameter withParameters: An array containgin the parameters of the invoked function
+    public func record(function: String, withParameters parameters: [Any] = []) {
+        let key = getKey(forParameters: parameters)
         if invocations[function] == nil {
             invocations[function] = [key: 1]
         } else if invocations[function]![key] == nil {
@@ -63,39 +63,35 @@ public class MockingBird {
         }
     }
 
-    /// Get a struct that can explain interactions with the mock
+    /// Get a description of interactions with the mocked function
     ///
-    /// - parameter function: The name of the invoked function
+    /// - parameter function: The name of the mocked function
     ///
-    /// - returns: The explain struct
-    public func explain(_ function: String) -> Explain {
-        let callCount = invocations[function]?.count ?? 0
-        return Explain(
-            callCount: callCount,
-            description: getDescription(function)
-        )
+    /// - returns: A description of interactions
+    public func explain(function: String) -> String {
+        return getDescription(forFunction: function)
     }
 
     // MARK: - private
 
-    private func getKey(_ parameters: [Any]) -> String {
+    private func getKey(forParameters parameters: [Any]) -> String {
         return "\(parameters.description)"
     }
 
-    private func getDescription(_ function: String) -> String {
+    private func getDescription(forFunction function: String) -> String {
         let stubbingCount = stubbings[function]?.count ?? 0
-        let invocationCount = getInvocationCount(invocations[function])
-        var summary = getDescriptionIntro(stubbingCount, invocationCount)
-        appendStubbingDescription(&summary, stubbings[function])
-        appendInvocationDescription(&summary, invocations[function])
+        let invocationCount = getInvocationCount(forFunction: invocations[function])
+        var summary = getDescriptionIntro(stubbings: stubbingCount, invocations: invocationCount)
+        appendStubbingDescription(appendTo: &summary, function: stubbings[function])
+        appendInvocationDescription(appendTo: &summary, function: invocations[function])
         return summary
     }
 
-    private func getDescriptionIntro(_ stubbings: Int, _ invocations: Int) -> String {
+    private func getDescriptionIntro(stubbings: Int, invocations: Int) -> String {
         return "This function has \(stubbings) stubbing\(stubbings == 1 ? "" : "s") and \(invocations) invocation\(invocations == 1 ? "" : "s")."
     }
 
-    private func appendStubbingDescription(_ appendTo: inout String, _ function: Dictionary<String, Any>?) {
+    private func appendStubbingDescription(appendTo: inout String, function: Dictionary<String, Any>?) {
         if function?.count ?? 0 > 0 {
             let stubbingHeading = "\n\n  Stubbings:"
             let stubbingsList = function?.reduce("") { initial, combine in
@@ -105,7 +101,7 @@ public class MockingBird {
         }
     }
 
-    private func appendInvocationDescription(_ appendTo: inout String, _ function: Dictionary<String, Int>?) {
+    private func appendInvocationDescription(appendTo: inout String, function: Dictionary<String, Int>?) {
         if function?.count ?? 0 > 0 {
             let invocationHeading = "\n\n  Invocations:"
             let invocationsList = function?.reduce("") { initial, combine in
@@ -115,7 +111,7 @@ public class MockingBird {
         }
     }
 
-    private func getInvocationCount(_ function: [String: Int]?) -> Int {
+    private func getInvocationCount(forFunction function: [String: Int]?) -> Int {
         return function?.reduce(0) { initial, combine in
             return initial + combine.value
         } ?? 0
