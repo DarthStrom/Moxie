@@ -282,6 +282,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = __PBXFileRef_MockingBird.xcodeproj/Configs/Project.xcconfig /* MockingBird.xcodeproj/Configs/Project.xcconfig */;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 			};
 			name = Release;
 		};
@@ -289,6 +290,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = __PBXFileRef_MockingBird.xcodeproj/Configs/Project.xcconfig /* MockingBird.xcodeproj/Configs/Project.xcconfig */;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 			};
 			name = Debug;
 		};
