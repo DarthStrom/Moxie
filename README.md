@@ -7,20 +7,20 @@ Stay tuned... this is a work in progress.
 
 ## Stubbing
 
-First, make a mock object with an instance of MockingBird.
+First, make a mock object that conforms to the Mockable protocol with an instance of MockingBird.
 
-Then in the function you want to stub you can use `valueFor` to get the value to return.
+Then in the function you want to stub you can use `returnValue` to get the value to return.
 
-In your test, you can use `when` to set the stubbed value.
+In your test, you can use `stub` to set the stubbed value.
 
 ```swift
 import MockingBird
 
-struct MockStruct {
-    let mb = MockingBird()
+struct MockStruct: Mockable {
+    var mb = MockingBird()
 
     func foo() -> String {
-        return mb.valueFor(function: "foo") ?? ""
+        return returnValue(for: "foo") ?? ""
     }
 }
 
@@ -29,7 +29,7 @@ class StructTests: XCTestCase {
     let mock = MockStruct()
 
     func testItWorks() {
-        mock.mb.stub(function: "foo", return: "bar")
+        mock.stub(function: "foo", return: "bar")
 
         XCTAssertEqual("bar", mock.foo())
     }
@@ -41,11 +41,11 @@ You can also stub for specific set of arguments:
 ```swift
 import MockingBird
 
-struct MockStruct {
-    let mb = MockingBird()
+struct MockStruct: Mockable {
+    var mb = MockingBird()
 
     func validate(id: Int, name: String) -> Bool {
-        return mb.valueFor(function: "validate", withParameters: [id, name]) ?? false
+        return returnValue(for: "validate", whenCalledWith: id, name) ?? false
     }
 }
 
@@ -54,7 +54,7 @@ class StructTests: XCTestCase {
     let mock = MockStruct()
 
     func testItWorks() {
-        mock.mb.stub(function: "validate", withParameters: [27, "George"], return: true)
+        mock.stub(function: "validate", whenCalledWith: 27, "George", return: true)
 
         XCTAssertTrue(mock.validate(id: 27, name: "George"))
     }

@@ -10,39 +10,39 @@ class VerificationTests: XCTestCase {
         subject = Tested()
     }
 
-    func testCallCountForZeroCalls() {
-        XCTAssertEqual(0, subject.mb.callCount(forFunction: "submit", withParameters: ["nope"]))
+    func testInvocationCountForZeroCalls() {
+        XCTAssertEqual(0, subject.mb.invocationCount(for: "submit", with: ["nope"]))
     }
 
-    func testCallCountForOneCall() {
+    func testInvocationCountForOneCall() {
         subject.submit(description: "yep")
 
-        XCTAssertEqual(1, subject.mb.callCount(forFunction: "submit", withParameters: ["yep"]))
+        XCTAssertEqual(1, subject.mb.invocationCount(for: "submit", with: ["yep"]))
     }
 
-    func testCallCountForMultipleCalls() {
+    func testInvocationCountForMultipleCalls() {
         subject.submit(description: "three")
         subject.submit(description: "three")
         subject.submit(description: "three")
 
-        XCTAssertEqual(3, subject.mb.callCount(forFunction: "submit", withParameters: ["three"]))
+        XCTAssertEqual(3, subject.mb.invocationCount(for: "submit", with: ["three"]))
     }
 
     func testVerifyIsTrueIfCallCountWasOne() {
         subject.submit(description: "one")
 
-        XCTAssert(subject.mb.verify(function: "submit", calledWithParameters: ["one"]))
+        XCTAssert(subject.mb.verify(function: "submit", wasCalledWith: ["one"]))
     }
 
     func testVerifyIsFalseIfCallCountWasZero() {
-        XCTAssertFalse(subject.mb.verify(function: "submit", calledWithParameters: ["zero"]))
+        XCTAssertFalse(subject.mb.verify(function: "submit", wasCalledWith: ["zero"]))
     }
 
     func testVerifyIsTrueIfCallCountWasMoreThanOne() {
         subject.submit(description: "two")
         subject.submit(description: "two")
 
-        XCTAssert(subject.mb.verify(function: "submit", calledWithParameters: ["two"]))
+        XCTAssert(subject.mb.verify(function: "submit", wasCalledWith: ["two"]))
     }
 }
 
@@ -54,6 +54,6 @@ struct Tested: Testable {
     let mb = MockingBird()
 
     func submit(description: String) {
-        mb.record(function: "submit", withParameters: [description])
+        mb.record(invocation: "submit", with: [description])
     }
 }

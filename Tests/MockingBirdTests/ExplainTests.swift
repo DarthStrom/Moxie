@@ -26,8 +26,8 @@ class ExplainTests: XCTestCase {
     }
 
     func testExplainWithMultipleStubbings() {
-        subject.mb.stub(function: "mirror", withParameters: ["me"], return: "me")
-        subject.mb.stub(function: "mirror", withParameters: ["you"], return: "you")
+        subject.mb.stub(function: "mirror", whenCalledWith: ["me"], return: "me")
+        subject.mb.stub(function: "mirror", whenCalledWith: ["you"], return: "you")
 
         XCTAssertEqual(
             "This function has 2 stubbings and 0 invocations.\n" +
@@ -75,8 +75,8 @@ class ExplainTests: XCTestCase {
     }
 
     func testExplainWithBothStubbingsAndInvocations() {
-        subject.mb.stub(function: "mirror", withParameters: ["Michael Jackson"], return: "man")
-        subject.mb.stub(function: "mirror", withParameters: ["man"], return: "Michael Jackson")
+        subject.mb.stub(function: "mirror", whenCalledWith: ["Michael Jackson"], return: "man")
+        subject.mb.stub(function: "mirror", whenCalledWith: ["man"], return: "Michael Jackson")
 
         subject.mirror(who: "thursday")
 
@@ -102,10 +102,10 @@ struct Explainer: Explainable {
     let mb = MockingBird()
 
     func doIt(param: String) {
-        mb.record(function: "doIt", withParameters: [param])
+        mb.record(invocation: "doIt", with: [param])
     }
 
     func mirror(who: String) {
-        mb.record(function: "mirror", withParameters: [who])
+        mb.record(invocation: "mirror", with: [who])
     }
 }
