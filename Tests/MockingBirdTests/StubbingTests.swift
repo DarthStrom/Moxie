@@ -13,18 +13,18 @@ class StubbingTests: XCTestCase {
     }
 
     func testCanStubConditionally() {
-        mock.mb.stub(function: "say", withParameters: [1], return: "One")
-        mock.mb.stub(function: "say", withParameters: [2], return: "Two")
+        mock.mb.stub(function: "say", whenCalledWith: [1], return: "One")
+        mock.mb.stub(function: "say", whenCalledWith: [2], return: "Two")
 
         XCTAssertEqual("One", mock.say(number: 1))
         XCTAssertEqual("Two", mock.say(number: 2))
     }
 
     func testConditionalStubbingWithStructParams() {
-        mock.mb.stub(function: "getNumber", withParameters: [TestStruct(num: 1, name: "Hi")], return: 5)
-        mock.mb.stub(function: "getNumber", withParameters: [TestStruct(num: 3, name: "Yo")], return: 2)
+        mock.mb.stub(function: "getNumber", whenCalledWith: [TestStruct(num: 1, name: "Hi")], return: 5)
+        mock.mb.stub(function: "getNumber", whenCalledWith: [TestStruct(num: 3, name: "Yo")], return: 2)
         let thirdStruct = TestStruct(num: 7, name: "Third")
-        mock.mb.stub(function: "getNumber", withParameters: [thirdStruct], return: 9)
+        mock.mb.stub(function: "getNumber", whenCalledWith: [thirdStruct], return: 9)
 
         XCTAssertEqual(5, mock.getNumber(fromStruct: TestStruct(num: 1, name: "Hi")))
         XCTAssertEqual(2, mock.getNumber(fromStruct: TestStruct(num: 3, name: "Yo")))
@@ -32,8 +32,8 @@ class StubbingTests: XCTestCase {
     }
 
     func testLastInWins() {
-        mock.mb.stub(function: "say", withParameters: [2], return: "One")
-        mock.mb.stub(function: "say", withParameters: [2], return: "Two")
+        mock.mb.stub(function: "say", whenCalledWith: [2], return: "One")
+        mock.mb.stub(function: "say", whenCalledWith: [2], return: "Two")
 
         XCTAssertEqual("Two", mock.say(number: 2))
     }
@@ -54,14 +54,14 @@ struct MockHub: InfoHub {
     var mb = MockingBird()
 
     func greet() -> String {
-        return mb.valueFor(function: "greet") ?? ""
+        return mb.returnValue(for: "greet") ?? ""
     }
 
     func say(number: Int) -> String {
-        return mb.valueFor(function: "say", withParameters: [number]) ?? ""
+        return mb.returnValue(for: "say", whenCalledWith: [number]) ?? ""
     }
 
     func getNumber(fromStruct s: TestStruct) -> Int {
-        return mb.valueFor(function: "getNumber", withParameters: [s]) ?? 0
+        return mb.returnValue(for: "getNumber", whenCalledWith: [s]) ?? 0
     }
 }
