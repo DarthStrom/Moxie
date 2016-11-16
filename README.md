@@ -36,7 +36,7 @@ class StructTests: XCTestCase {
 }
 
 ```
-You can also stub for specific set of arguments:
+You can also stub for a specific set of arguments:
 
 ```swift
 import MockingBird

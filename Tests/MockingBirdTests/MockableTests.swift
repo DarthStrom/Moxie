@@ -81,6 +81,11 @@ class MockableTests: XCTestCase {
 
         XCTAssertEqual(5, subject.twoparams(x: 2, y: 3) as? Int)
     }
+
+    func testExplain() {
+        XCTAssertEqual("This function has 0 stubbings and 0 invocations.",
+                       subject.explain(function: "not there"))
+    }
 }
 
 class Subject: Mockable {

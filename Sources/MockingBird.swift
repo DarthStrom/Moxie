@@ -5,11 +5,11 @@ public class MockingBird {
 
     public init() {}
 
-    /// Set a return value for a stubbed function call
+    /// Set a return value for a stubbed function call.
     ///
-    /// - parameter function:       The name of the stubbed function
-    /// - parameter whenCalledWith: An array containing the parameters of the stubbed function call
-    /// - parameter return:         The value to return when the stubbed function is called
+    /// - parameter function:       The name of the stubbed function.
+    /// - parameter whenCalledWith: An array containing the parameters of the stubbed function call.
+    /// - parameter return:         The value to return when the stubbed function is called.  The default is `nil`.
     public func stub<T>(function: String, whenCalledWith parameters: [Any] = [], return value: T? = nil) {
         if value != nil {
             if stubbings[function] == nil {
@@ -20,40 +20,40 @@ public class MockingBird {
         }
     }
 
-    /// Get the value that has been specified for the stubbed function
+    /// Get the value that has been specified for the stubbed function.
     ///
-    /// - parameter for:            The name of the stubbed function
-    /// - parameter whenCalledWith: An array containing the parameters of the stubbed function call
+    /// - parameter for:            The name of the stubbed function.
+    /// - parameter whenCalledWith: An array containing the parameters of the stubbed function call.
     ///
-    /// - returns: The previously specified value (via stub) for the function call or nil if none was specified
+    /// - returns: The previously specified value (via `stub`) for the function call or `nil` if none was specified.
     public func returnValue<T>(for function: String, whenCalledWith parameters: [Any] = []) -> T? {
         return stubbings[function]?[getKey(forParameters: parameters)] as? T
     }
 
-    /// Get the number of invocations for the function with the parameters specified
+    /// Get the number of invocations for the function with the parameters specified.
     ///
-    /// - parameter for:  The name of the invoked function
-    /// - parameter with: An array containing the parameters of the invoked function
+    /// - parameter for:  The name of the invoked function.
+    /// - parameter with: An array containing the parameters of the invoked function.
     ///
-    /// - returns: The number of invocations of the function with the parameters specified
+    /// - returns: The number of invocations of the function with the parameters specified.
     public func invocationCount(for function: String, with parameters: [Any] = []) -> Int {
         return invocations[function]?[getKey(forParameters: parameters)] ?? 0
     }
 
-    /// Determine whether a function was invoked with the given parameters
+    /// Determine whether a function was invoked with the given parameters.
     ///
-    /// - parameter function:      The name of the invoked function
-    /// - parameter wasCalledWith: An array containing the parameters of the invoked function
+    /// - parameter function:      The name of the invoked function.
+    /// - parameter wasCalledWith: An array containing the parameters of the invoked function.
     ///
-    /// - returns: True if the number of invocations is one or more
+    /// - returns: `true` if the number of invocations is one or more.
     public func verify(function: String, wasCalledWith parameters: [Any] = []) -> Bool {
         return invocationCount(for: function, with: parameters) > 0
     }
 
-    /// Remember that a function was invoked with the given parameters
+    /// Remember that a function was invoked with the given parameters.
     ///
-    /// - parameter invocation: The name of the invoked function
-    /// - parameter with:       An array containing the parameters of the invoked function
+    /// - parameter invocation: The name of the invoked function.
+    /// - parameter with:       An array containing the parameters of the invoked function.
     public func record(invocation: String, with parameters: [Any] = []) {
         let key = getKey(forParameters: parameters)
         if invocations[invocation] == nil {
@@ -65,11 +65,11 @@ public class MockingBird {
         }
     }
 
-    /// Get a description of interactions with the mocked function
+    /// Get a description of interactions with the mocked function.
     ///
-    /// - parameter function: The name of the mocked function
+    /// - parameter function: The name of the mocked function.
     ///
-    /// - returns: A description of interactions
+    /// - returns: A description of interactions.
     public func explain(function: String) -> String {
         return getDescription(forFunction: function)
     }
