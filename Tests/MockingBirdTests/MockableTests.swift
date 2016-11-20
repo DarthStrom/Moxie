@@ -6,44 +6,44 @@ class MockableTests: XCTestCase {
     var subject = Subject()
 
     func testRecordWithNoParameters() {
-        subject.record(invocation: "something")
+        subject.record(function: "something")
 
-        XCTAssertEqual(1, subject.invocationCount(for: "something"))
+        XCTAssertEqual(1, subject.invocations(forFunction: "something"))
     }
 
     func testRecordWithASpecificSetOfParameters() {
-        subject.record(invocation: "something", with: 1, "5")
-        subject.record(invocation: "something")
+        subject.record(function: "something", wasCalledWith: 1, "5")
+        subject.record(function: "something")
 
-        XCTAssertEqual(1, subject.invocationCount(for: "something", with: 1, "5"))
+        XCTAssertEqual(1, subject.invocations(forFunction: "something", with: 1, "5"))
     }
 
     func testInvocationCountForWrongParameters() {
-        subject.record(invocation: "something", with: 1, 2)
+        subject.record(function: "something", wasCalledWith: 1, 2)
 
-        XCTAssertEqual(0, subject.invocationCount(for: "something", with: 1, 3))
+        XCTAssertEqual(0, subject.invocations(forFunction: "something", with: 1, 3))
     }
 
     func testVerifyReturnsTrueWhenFunctionWasCalled() {
-        subject.record(invocation: "something")
+        subject.record(function: "something")
 
-        XCTAssertTrue(subject.verify(function: "something"))
+        XCTAssertTrue(subject.invoked(function: "something"))
     }
 
     func testVerifyReturnsFalseWhenFunctionWasNotCalled() {
-        XCTAssertFalse(subject.verify(function: "something"))
+        XCTAssertFalse(subject.invoked(function: "something"))
     }
 
     func testVerifyReturnsTrueWhenCalledWithMatchingParameters() {
-        subject.record(invocation: "something", with: 1, "two")
+        subject.record(function: "something", wasCalledWith: 1, "two")
 
-        XCTAssertTrue(subject.verify(function: "something", wasCalledWith: 1, "two"))
+        XCTAssertTrue(subject.invoked(function: "something", with: 1, "two"))
     }
 
     func testVerifyReturnsFalseWhenCalledWithTheWrongParameters() {
-        subject.record(invocation: "something", with: "One", 2)
+        subject.record(function: "something", wasCalledWith: "One", 2)
 
-        XCTAssertFalse(subject.verify(function: "something", wasCalledWith: 1, 2))
+        XCTAssertFalse(subject.invoked(function: "something", with: 1, 2))
     }
 
     func testStubbingWithNoReturnValue() {
@@ -84,7 +84,7 @@ class MockableTests: XCTestCase {
 
     func testExplain() {
         XCTAssertEqual("This function has 0 stubbings and 0 invocations.",
-                       subject.explain(function: "not there"))
+                       subject.interactions(withFunction: "not there"))
     }
 }
 
@@ -92,10 +92,10 @@ class Subject: Mockable {
     var mb = MockingBird()
 
     func noparams() -> Any? {
-        return returnValue(for: "noparams")
+        return value(forFunction: "noparams")
     }
 
     func twoparams(x: Int, y: Int) -> Any? {
-        return returnValue(for: "twoparams", whenCalledWith: x, y)
+        return value(forFunction: "twoparams", whenCalledWith: x, y)
     }
 }
