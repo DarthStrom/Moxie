@@ -16,8 +16,8 @@ class StubbingTests: XCTestCase {
         mock.mb.stub(function: "say", whenCalledWith: [1], return: "One")
         mock.mb.stub(function: "say", whenCalledWith: [2], return: "Two")
 
-        XCTAssertEqual("One", mock.say(number: 1))
-        XCTAssertEqual("Two", mock.say(number: 2))
+        XCTAssertEqual("One", mock.say(1))
+        XCTAssertEqual("Two", mock.say(2))
     }
 
     func testConditionalStubbingWithStructParams() {
@@ -26,16 +26,16 @@ class StubbingTests: XCTestCase {
         let thirdStruct = TestStruct(num: 7, name: "Third")
         mock.mb.stub(function: "getNumber", whenCalledWith: [thirdStruct], return: 9)
 
-        XCTAssertEqual(5, mock.getNumber(fromStruct: TestStruct(num: 1, name: "Hi")))
-        XCTAssertEqual(2, mock.getNumber(fromStruct: TestStruct(num: 3, name: "Yo")))
-        XCTAssertEqual(9, mock.getNumber(fromStruct: thirdStruct))
+        XCTAssertEqual(5, mock.getNumber(from: TestStruct(num: 1, name: "Hi")))
+        XCTAssertEqual(2, mock.getNumber(from: TestStruct(num: 3, name: "Yo")))
+        XCTAssertEqual(9, mock.getNumber(from: thirdStruct))
     }
 
     func testLastInWins() {
         mock.mb.stub(function: "say", whenCalledWith: [2], return: "One")
         mock.mb.stub(function: "say", whenCalledWith: [2], return: "Two")
 
-        XCTAssertEqual("Two", mock.say(number: 2))
+        XCTAssertEqual("Two", mock.say(2))
     }
 }
 
@@ -46,22 +46,22 @@ struct TestStruct {
 
 protocol InfoHub {
     func greet() -> String
-    func say(number: Int) -> String
-    func getNumber(fromStruct: TestStruct) -> Int
+    func say(_: Int) -> String
+    func getNumber(from: TestStruct) -> Int
 }
 
 struct MockHub: InfoHub {
     var mb = MockingBird()
 
     func greet() -> String {
-        return mb.returnValue(for: "greet") ?? ""
+        return mb.value(forFunction: "greet") ?? ""
     }
 
-    func say(number: Int) -> String {
-        return mb.returnValue(for: "say", whenCalledWith: [number]) ?? ""
+    func say(_ number: Int) -> String {
+        return mb.value(forFunction: "say", whenCalledWith: [number]) ?? ""
     }
 
-    func getNumber(fromStruct s: TestStruct) -> Int {
-        return mb.returnValue(for: "getNumber", whenCalledWith: [s]) ?? 0
+    func getNumber(from s: TestStruct) -> Int {
+        return mb.value(forFunction: "getNumber", whenCalledWith: [s]) ?? 0
     }
 }

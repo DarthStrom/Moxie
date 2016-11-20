@@ -11,49 +11,49 @@ class VerificationTests: XCTestCase {
     }
 
     func testInvocationCountForZeroCalls() {
-        XCTAssertEqual(0, subject.mb.invocationCount(for: "submit", with: ["nope"]))
+        XCTAssertEqual(0, subject.mb.invocations(forFunction: "submit", with: ["nope"]))
     }
 
     func testInvocationCountForOneCall() {
-        subject.submit(description: "yep")
+        subject.submit("yep")
 
-        XCTAssertEqual(1, subject.mb.invocationCount(for: "submit", with: ["yep"]))
+        XCTAssertEqual(1, subject.mb.invocations(forFunction: "submit", with: ["yep"]))
     }
 
     func testInvocationCountForMultipleCalls() {
-        subject.submit(description: "three")
-        subject.submit(description: "three")
-        subject.submit(description: "three")
+        subject.submit("three")
+        subject.submit("three")
+        subject.submit("three")
 
-        XCTAssertEqual(3, subject.mb.invocationCount(for: "submit", with: ["three"]))
+        XCTAssertEqual(3, subject.mb.invocations(forFunction: "submit", with: ["three"]))
     }
 
     func testVerifyIsTrueIfCallCountWasOne() {
-        subject.submit(description: "one")
+        subject.submit("one")
 
-        XCTAssert(subject.mb.verify(function: "submit", wasCalledWith: ["one"]))
+        XCTAssert(subject.mb.invoked(function: "submit", with: ["one"]))
     }
 
     func testVerifyIsFalseIfCallCountWasZero() {
-        XCTAssertFalse(subject.mb.verify(function: "submit", wasCalledWith: ["zero"]))
+        XCTAssertFalse(subject.mb.invoked(function: "submit", with: ["zero"]))
     }
 
     func testVerifyIsTrueIfCallCountWasMoreThanOne() {
-        subject.submit(description: "two")
-        subject.submit(description: "two")
+        subject.submit("two")
+        subject.submit("two")
 
-        XCTAssert(subject.mb.verify(function: "submit", wasCalledWith: ["two"]))
+        XCTAssert(subject.mb.invoked(function: "submit", with: ["two"]))
     }
 }
 
 protocol Testable {
-    func submit(description: String)
+    func submit(_ description: String)
 }
 
 struct Tested: Testable {
     let mb = MockingBird()
 
-    func submit(description: String) {
-        mb.record(invocation: "submit", with: [description])
+    func submit(_ description: String) {
+        mb.record(function: "submit", wasCalledWith: [description])
     }
 }

@@ -2,16 +2,16 @@ public protocol Mockable {
     var mb: MockingBird { get set }
 
     func stub(function: String, whenCalledWith parameters: Any..., return value: Any?)
-    func returnValue<T>(for function: String, whenCalledWith parameters: Any...) -> T?
-    func invocationCount(for function: String, with parameters: Any...) -> Int
-    func verify(function: String, wasCalledWith parameters: Any...) -> Bool
-    func record(invocation: String, with parameters: Any...)
-    func explain(function: String) -> String
+    func value<T>(forFunction function: String, whenCalledWith parameters: Any...) -> T?
+    func invocations(forFunction function: String, with parameters: Any...) -> Int
+    func invoked(function: String, with parameters: Any...) -> Bool
+    func record(function: String, wasCalledWith parameters: Any...)
+    func interactions(withFunction function: String) -> String
 }
 
 public extension Mockable {
 
-    /// Set a return value for a stubbed function call.
+    /// Sets a return value for a stubbed function call.
     ///
     /// - parameter function:       The name of the stubbed function.
     /// - parameter whenCalledWith: Zero or more parameters of the stubbed function call.
@@ -20,50 +20,50 @@ public extension Mockable {
         mb.stub(function: function, whenCalledWith: parameters, return: value)
     }
 
-    /// Get the value that has been specified for the stubbed function.
+    /// The value that has been specified for the stubbed function.
     ///
-    /// - parameter for:            The name of the stubbed function.
+    /// - parameter forFunction:            The name of the stubbed function.
     /// - parameter whenCalledWith: Zero or more parameters of the stubbed function call.
     ///
     /// - returns: The previously specified value (via `stub`) for the function call or `nil` if none was specified.
-    func returnValue<T>(for function: String, whenCalledWith parameters: Any...) -> T? {
-        return mb.returnValue(for: function, whenCalledWith: parameters)
+    func value<T>(forFunction function: String, whenCalledWith parameters: Any...) -> T? {
+        return mb.value(forFunction: function, whenCalledWith: parameters)
     }
 
-    /// Get the number of invocations for the function with the parameters specified.
+    /// The number of invocations for the function with the parameters specified.
     ///
-    /// - parameter for:  The name of the invoked function.
-    /// - parameter with: Zero or more parameters of the invoked function.
+    /// - parameter forFunction: The name of the invoked function.
+    /// - parameter with:        Zero or more parameters of the invoked function.
     ///
     /// - returns: The number of invocations of the function with the parameters specified.
-    func invocationCount(for function: String, with parameters: Any...) -> Int {
-        return mb.invocationCount(for: function, with: parameters)
+    func invocations(forFunction function: String, with parameters: Any...) -> Int {
+        return mb.invocations(forFunction: function, with: parameters)
     }
 
-    /// Determine whether a function was invoked with the given parameters.
+    /// Was the function was invoked with the given parameters?
+    ///
+    /// - parameter function: The name of the invoked function.
+    /// - parameter with:     Zero or more parameters of the invoked function.
+    ///
+    /// - returns: `true` if the number of invocations is one or more.
+    func invoked(function: String, with parameters: Any...) -> Bool {
+        return mb.invoked(function: function, with: parameters)
+    }
+
+    /// Records that a function was invoked with the given parameters.
     ///
     /// - parameter function:      The name of the invoked function.
     /// - parameter wasCalledWith: Zero or more parameters of the invoked function.
-    ///
-    /// - returns: `true` if the number of invocations is one or more.
-    func verify(function: String, wasCalledWith parameters: Any...) -> Bool {
-        return mb.verify(function: function, wasCalledWith: parameters)
+    func record(function: String, wasCalledWith parameters: Any...) {
+        mb.record(function: function, wasCalledWith: parameters)
     }
 
-    /// Remember that a function was invoked with the given parameters.
+    /// A description of interactions with the mocked function.
     ///
-    /// - parameter invocation: The name of the invoked function.
-    /// - parameter with:       Zero or more parameters of the invoked function.
-    func record(invocation: String, with parameters: Any...) {
-        mb.record(invocation: invocation, with: parameters)
-    }
-
-    /// Get a description of interactions with the mocked function.
-    ///
-    /// - parameter function: The name of the mocked function.
+    /// - parameter withFunction: The name of the mocked function.
     ///
     /// - returns: A description of interactions.
-    func explain(function: String) -> String {
-        return mb.explain(function: function)
+    func interactions(withFunction function: String) -> String {
+        return mb.interactions(withFunction: function)
     }
 }
