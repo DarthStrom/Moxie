@@ -9,7 +9,7 @@ Stay tuned... this is a work in progress.
 
 First, make a mock object that conforms to the Mockable protocol with an instance of MockingBird.
 
-Then in the function you want to stub you can use `returnValue` to get the value to return.
+Then in the function you want to stub you can use `value` to get the value to return.
 
 In your test, you can use `stub` to set the stubbed value.
 
@@ -20,7 +20,7 @@ struct MockStruct: Mockable {
     var mb = MockingBird()
 
     func foo() -> String {
-        return returnValue(for: "foo") ?? ""
+        return value(forFunction: "foo") ?? ""
     }
 }
 
@@ -45,7 +45,7 @@ struct MockStruct: Mockable {
     var mb = MockingBird()
 
     func validate(id: Int, name: String) -> Bool {
-        return returnValue(for: "validate", whenCalledWith: id, name) ?? false
+        return value(forFunction: "validate", whenCalledWith: id, name) ?? false
     }
 }
 
