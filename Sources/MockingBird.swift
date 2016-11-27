@@ -1,6 +1,6 @@
 public class MockingBird {
 
-    var stubbings = [String: [String: Any]]()
+    var stubbings = [String: [String: [Any]]]()
     var invocations = [String: [String: Int]]()
 
     public init() {}
@@ -9,11 +9,12 @@ public class MockingBird {
     ///
     /// - parameter function:       The name of the stubbed function.
     /// - parameter whenCalledWith: An array containing the parameters of the stubbed function call.
-    /// - parameter return:         The value to return when the stubbed function is called.  The default is `nil`.
-    public func stub<T>(function: String, whenCalledWith parameters: [Any] = [], return value: T? = nil) {
-        if value != nil {
+    /// - parameter return:         An array containing the values to return when the stubbed function is called.
+    ///                             The last value is returned repeatedly therafter.  The default is `[]`.
+    public func stub(function: String, whenCalledWith parameters: [Any] = [], return value: [Any] = []) {
+        if !value.isEmpty {
             if stubbings[function] == nil {
-                stubbings[function] = [getKey(for: parameters): value!]
+                stubbings[function] = [getKey(for: parameters): value]
             } else {
                 stubbings[function]![getKey(for: parameters)] = value
             }
@@ -27,7 +28,13 @@ public class MockingBird {
     ///
     /// - returns: The previously specified value (via `stub`) for the function call or `nil` if none was specified.
     public func value<T>(forFunction function: String, whenCalledWith parameters: [Any] = []) -> T? {
-        return stubbings[function]?[getKey(for: parameters)] as? T
+        let values = stubbings[function]?[getKey(for: parameters)] as? [T]
+        if let value = values?.first {
+            removeSequentialStubbing(forFunction: function, whenCalledWith: parameters)
+            return getUnwrappedReturnValue(value: value)
+        } else {
+            return nil
+        }
     }
 
     /// The number of invocations for the function with the parameters specified.
@@ -117,5 +124,30 @@ public class MockingBird {
         return function?.reduce(0) { initial, combine in
             return initial + combine.value
         } ?? 0
+    }
+
+    private func removeSequentialStubbing(forFunction function: String, whenCalledWith parameters: [Any]) {
+        if let array = stubbings[function]?[getKey(for: parameters)], array.count > 1 {
+            stubbings[function]![getKey(for: parameters)]!.removeFirst()
+        }
+    }
+
+    private func getUnwrappedReturnValue<T>(value: T) -> T? {
+        if unwrap(value) != nil {
+            return value
+        } else {
+            return nil
+        }
+    }
+
+    private func unwrap(_ any: Any) -> Any? {
+        let mirror = Mirror(reflecting: any)
+        if mirror.displayStyle != .optional {
+            return any
+        }
+
+        if mirror.children.count == 0 { return nil }
+        let (_, some) = mirror.children.first!
+        return some
     }
 }

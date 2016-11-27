@@ -16,26 +16,26 @@ class ExplainTests: XCTestCase {
     }
 
     func testExplainWithOneStubbing() {
-        subject.mb.stub(function: "returnIt", return: "it")
+        subject.mb.stub(function: "returnIt", return: ["it"])
 
         XCTAssertEqual(
             "This function has 1 stubbing and 0 invocations.\n" +
             "\n" +
             "  Stubbings:\n" +
-            "  - When called with `[]`, then return `it`.",
+            "  - When called with `[]`, then return `[\"it\"]`.",
             subject.mb.interactions(withFunction: "returnIt"))
     }
 
     func testExplainWithMultipleStubbings() {
-        subject.mb.stub(function: "mirror", whenCalledWith: ["me"], return: "me")
-        subject.mb.stub(function: "mirror", whenCalledWith: ["you"], return: "you")
+        subject.mb.stub(function: "mirror", whenCalledWith: ["me"], return: ["me"])
+        subject.mb.stub(function: "mirror", whenCalledWith: ["you"], return: ["you"])
 
         XCTAssertEqual(
             "This function has 2 stubbings and 0 invocations.\n" +
             "\n" +
             "  Stubbings:\n" +
-            "  - When called with `[\"me\"]`, then return `me`.\n" +
-            "  - When called with `[\"you\"]`, then return `you`.",
+            "  - When called with `[\"me\"]`, then return `[\"me\"]`.\n" +
+            "  - When called with `[\"you\"]`, then return `[\"you\"]`.",
             subject.mb.interactions(withFunction: "mirror"))
     }
 
@@ -76,8 +76,8 @@ class ExplainTests: XCTestCase {
     }
 
     func testExplainWithBothStubbingsAndInvocations() {
-        subject.mb.stub(function: "mirror", whenCalledWith: ["Michael Jackson"], return: "man")
-        subject.mb.stub(function: "mirror", whenCalledWith: ["man"], return: "Michael Jackson")
+        subject.mb.stub(function: "mirror", whenCalledWith: ["Michael Jackson"], return: ["man"])
+        subject.mb.stub(function: "mirror", whenCalledWith: ["man"], return: ["Michael Jackson"])
 
         subject.mirror("thursday")
 
@@ -85,8 +85,8 @@ class ExplainTests: XCTestCase {
             "This function has 2 stubbings and 1 invocation.\n" +
             "\n" +
             "  Stubbings:\n" +
-            "  - When called with `[\"Michael Jackson\"]`, then return `man`.\n" +
-            "  - When called with `[\"man\"]`, then return `Michael Jackson`.\n" +
+            "  - When called with `[\"Michael Jackson\"]`, then return `[\"man\"]`.\n" +
+            "  - When called with `[\"man\"]`, then return `[\"Michael Jackson\"]`.\n" +
             "\n" +
             "  Invocations:\n" +
             "  - Called with `[\"thursday\"]`.",
