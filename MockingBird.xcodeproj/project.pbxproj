@@ -238,7 +238,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = MockingBird;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -268,7 +267,6 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -290,7 +288,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = __PBXFileRef_MockingBird.xcodeproj/Configs/Project.xcconfig /* MockingBird.xcodeproj/Configs/Project.xcconfig */;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -298,7 +296,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = __PBXFileRef_MockingBird.xcodeproj/Configs/Project.xcconfig /* MockingBird.xcodeproj/Configs/Project.xcconfig */;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
