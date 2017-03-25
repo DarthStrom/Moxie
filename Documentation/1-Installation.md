@@ -19,7 +19,7 @@
 use_frameworks!
 
 def testing_pods
-    pod 'MockingBird'
+    pod 'MockingBird', :git => 'https://github.com/DarthStrom/MockingBird.git'
 end
 
 target 'CoolProjUnitTests' do
