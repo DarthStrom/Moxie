@@ -12,4 +12,5 @@ Pod::Spec.new do |s|
   s.source = { :git => "https://github.com/DarthStrom/MockingBird.git", :tag => "v#{s.version}" }
   s.source_files = "Sources", "Sources"
   s.osx.deployment_target = '10.10'
+  s.ios.deployment_target = '8.1'
 end
