@@ -1,8 +1,6 @@
 # Installation
 
-## Installing MockingBird
-
-### Cocoapods
+## Cocoapods
 
 1. Make sure you are using Cocoapods version 0.36.0 or newer for Swift support.
 2. Create a `Podfile` file if you don't already have one and add MockingBird as a testing dependency, e.g.:
