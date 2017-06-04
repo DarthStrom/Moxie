@@ -1,5 +1,5 @@
-public protocol Mockable {
-    var mb: MockingBird { get set }
+public protocol Mock {
+    var moxie: Moxie { get set }
 
     func stub(function: String, whenCalledWith parameters: [Any], return value: Any...)
     func value<T>(forFunction function: String, whenCalledWith parameters: [Any]) -> T?
@@ -9,7 +9,7 @@ public protocol Mockable {
     func interactions(withFunction function: String) -> String
 }
 
-public extension Mockable {
+public extension Mock {
 
     /// Sets a return value for a stubbed function call.
     ///
@@ -17,7 +17,7 @@ public extension Mockable {
     /// - parameter whenCalledWith: An array containing parameters of the stubbed function call.
     /// - parameter return:         Zero or more values to return when the stubbed function is called.
     func stub(function: String, whenCalledWith parameters: [Any] = [], return value: Any...) {
-        mb.stub(function: function, whenCalledWith: parameters, return: value)
+        moxie.stub(function: function, whenCalledWith: parameters, return: value)
     }
 
     /// The value that has been specified for the stubbed function.
@@ -27,7 +27,7 @@ public extension Mockable {
     ///
     /// - returns: The previously specified value (via `stub`) for the function call or `nil` if none was specified.
     func value<T>(forFunction function: String, whenCalledWith parameters: [Any] = []) -> T? {
-        return mb.value(forFunction: function, whenCalledWith: parameters)
+        return moxie.value(forFunction: function, whenCalledWith: parameters)
     }
 
     /// The number of invocations for the function with the parameters specified.
@@ -37,7 +37,7 @@ public extension Mockable {
     ///
     /// - returns: The number of invocations of the function with the parameters specified.
     func invocations(forFunction function: String, with parameters: [Any] = []) -> Int {
-        return mb.invocations(forFunction: function, with: parameters)
+        return moxie.invocations(forFunction: function, with: parameters)
     }
 
     /// Was the function was invoked with the given parameters?
@@ -47,7 +47,7 @@ public extension Mockable {
     ///
     /// - returns: `true` if the number of invocations is one or more.
     func invoked(function: String, with parameters: [Any] = []) -> Bool {
-        return mb.invoked(function: function, with: parameters)
+        return moxie.invoked(function: function, with: parameters)
     }
 
     /// Records that a function was invoked with the given parameters.
@@ -55,7 +55,7 @@ public extension Mockable {
     /// - parameter function:      The name of the invoked function.
     /// - parameter wasCalledWith: An array containing parameters of the invoked function.
     func record(function: String, wasCalledWith parameters: [Any] = []) {
-        mb.record(function: function, wasCalledWith: parameters)
+        moxie.record(function: function, wasCalledWith: parameters)
     }
 
     /// A description of interactions with the mocked function.
@@ -64,6 +64,6 @@ public extension Mockable {
     ///
     /// - returns: A description of interactions.
     func interactions(withFunction function: String) -> String {
-        return mb.interactions(withFunction: function)
+        return moxie.interactions(withFunction: function)
     }
 }

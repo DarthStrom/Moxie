@@ -7,24 +7,24 @@ class StubbingTests: XCTestCase {
     let mock = MockHub()
 
     func testCanStubAFunction() {
-        mock.mb.stub(function: "greet", return: ["What's up"])
+        mock.moxie.stub(function: "greet", return: ["What's up"])
 
         XCTAssertEqual("What's up", mock.greet())
     }
 
     func testCanStubConditionally() {
-        mock.mb.stub(function: "say", whenCalledWith: [1], return: ["One"])
-        mock.mb.stub(function: "say", whenCalledWith: [2], return: ["Two"])
+        mock.moxie.stub(function: "say", whenCalledWith: [1], return: ["One"])
+        mock.moxie.stub(function: "say", whenCalledWith: [2], return: ["Two"])
 
         XCTAssertEqual("One", mock.say(1))
         XCTAssertEqual("Two", mock.say(2))
     }
 
     func testConditionalStubbingWithStructParams() {
-        mock.mb.stub(function: "getNumber", whenCalledWith: [TestStruct(num: 1, name: "Hi")], return: [5])
-        mock.mb.stub(function: "getNumber", whenCalledWith: [TestStruct(num: 3, name: "Yo")], return: [2])
+        mock.moxie.stub(function: "getNumber", whenCalledWith: [TestStruct(num: 1, name: "Hi")], return: [5])
+        mock.moxie.stub(function: "getNumber", whenCalledWith: [TestStruct(num: 3, name: "Yo")], return: [2])
         let thirdStruct = TestStruct(num: 7, name: "Third")
-        mock.mb.stub(function: "getNumber", whenCalledWith: [thirdStruct], return: [9])
+        mock.moxie.stub(function: "getNumber", whenCalledWith: [thirdStruct], return: [9])
 
         XCTAssertEqual(5, mock.getNumber(from: TestStruct(num: 1, name: "Hi")))
         XCTAssertEqual(2, mock.getNumber(from: TestStruct(num: 3, name: "Yo")))
@@ -32,14 +32,14 @@ class StubbingTests: XCTestCase {
     }
 
     func testLastInWins() {
-        mock.mb.stub(function: "say", whenCalledWith: [2], return: ["One"])
-        mock.mb.stub(function: "say", whenCalledWith: [2], return: ["Two"])
+        mock.moxie.stub(function: "say", whenCalledWith: [2], return: ["One"])
+        mock.moxie.stub(function: "say", whenCalledWith: [2], return: ["Two"])
 
         XCTAssertEqual("Two", mock.say(2))
     }
 
     func testSequentialStubbing() {
-        mock.mb.stub(function: "say", whenCalledWith: [2], return: ["One", "Two"])
+        mock.moxie.stub(function: "say", whenCalledWith: [2], return: ["One", "Two"])
 
         XCTAssertEqual("One", mock.say(2))
         XCTAssertEqual("Two", mock.say(2))
@@ -59,17 +59,17 @@ protocol InfoHub {
 }
 
 struct MockHub: InfoHub {
-    var mb = MockingBird()
+    var moxie = Moxie()
 
     func greet() -> String {
-        return mb.value(forFunction: "greet") ?? ""
+        return moxie.value(forFunction: "greet") ?? ""
     }
 
     func say(_ number: Int) -> String {
-        return mb.value(forFunction: "say", whenCalledWith: [number]) ?? ""
+        return moxie.value(forFunction: "say", whenCalledWith: [number]) ?? ""
     }
 
     func getNumber(from s: TestStruct) -> Int {
-        return mb.value(forFunction: "getNumber", whenCalledWith: [s]) ?? 0
+        return moxie.value(forFunction: "getNumber", whenCalledWith: [s]) ?? 0
     }
 }

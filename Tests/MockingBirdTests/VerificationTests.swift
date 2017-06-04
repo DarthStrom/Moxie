@@ -11,13 +11,13 @@ class VerificationTests: XCTestCase {
     }
 
     func testInvocationCountForZeroCalls() {
-        XCTAssertEqual(0, subject.mb.invocations(forFunction: "submit", with: ["nope"]))
+        XCTAssertEqual(0, subject.moxie.invocations(forFunction: "submit", with: ["nope"]))
     }
 
     func testInvocationCountForOneCall() {
         subject.submit("yep")
 
-        XCTAssertEqual(1, subject.mb.invocations(forFunction: "submit", with: ["yep"]))
+        XCTAssertEqual(1, subject.moxie.invocations(forFunction: "submit", with: ["yep"]))
     }
 
     func testInvocationCountForMultipleCalls() {
@@ -25,24 +25,24 @@ class VerificationTests: XCTestCase {
         subject.submit("three")
         subject.submit("three")
 
-        XCTAssertEqual(3, subject.mb.invocations(forFunction: "submit", with: ["three"]))
+        XCTAssertEqual(3, subject.moxie.invocations(forFunction: "submit", with: ["three"]))
     }
 
     func testVerifyIsTrueIfCallCountWasOne() {
         subject.submit("one")
 
-        XCTAssert(subject.mb.invoked(function: "submit", with: ["one"]))
+        XCTAssert(subject.moxie.invoked(function: "submit", with: ["one"]))
     }
 
     func testVerifyIsFalseIfCallCountWasZero() {
-        XCTAssertFalse(subject.mb.invoked(function: "submit", with: ["zero"]))
+        XCTAssertFalse(subject.moxie.invoked(function: "submit", with: ["zero"]))
     }
 
     func testVerifyIsTrueIfCallCountWasMoreThanOne() {
         subject.submit("two")
         subject.submit("two")
 
-        XCTAssert(subject.mb.invoked(function: "submit", with: ["two"]))
+        XCTAssert(subject.moxie.invoked(function: "submit", with: ["two"]))
     }
 }
 
@@ -51,9 +51,9 @@ protocol Testable {
 }
 
 struct Tested: Testable {
-    let mb = MockingBird()
+    let moxie = Moxie()
 
     func submit(_ description: String) {
-        mb.record(function: "submit", wasCalledWith: [description])
+        moxie.record(function: "submit", wasCalledWith: [description])
     }
 }

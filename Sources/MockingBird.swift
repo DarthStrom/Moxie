@@ -1,4 +1,4 @@
-public class MockingBird {
+public class Moxie {
 
     var stubbings = [String: [String: [Any]]]()
     var invocations = [String: [String: Int]]()
