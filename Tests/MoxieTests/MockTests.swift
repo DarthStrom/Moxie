@@ -1,7 +1,7 @@
 import XCTest
-import MockingBird
+import Moxie
 
-class MockableTests: XCTestCase {
+class MockTests: XCTestCase {
     
     var subject = Subject()
 

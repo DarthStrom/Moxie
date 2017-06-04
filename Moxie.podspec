@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
-  s.name = "MockingBird"
+  s.name = "Moxie"
   s.version = "0.1.1-alpha"
   s.summary = "A mocking library for Swift."
   s.description = <<-DESC
-    MockingBird makes creating mocks easier in Swift.
+    Moxie makes creating mocks easier in Swift.
     DESC
   s.homepage = "https://github.com/DarthStrom/MockingBird"
   s.license = { :type => "MIT", :file => "LICENSE" }

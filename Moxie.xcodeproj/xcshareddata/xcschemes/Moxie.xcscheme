@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "______Target_MockingBird"
-               BuildableName = "MockingBird.framework"
-               BlueprintName = "MockingBird"
-               ReferencedContainer = "container:MockingBird.xcodeproj">
+               BuildableName = "Moxie.framework"
+               BlueprintName = "Moxie"
+               ReferencedContainer = "container:Moxie.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "______Target_MockingBirdTests"
-               BuildableName = "MockingBirdTests.xctest"
-               BlueprintName = "MockingBirdTests"
-               ReferencedContainer = "container:MockingBird.xcodeproj">
+               BuildableName = "MoxieTests.xctest"
+               BlueprintName = "MoxieTests"
+               ReferencedContainer = "container:Moxie.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "______Target_MockingBird"
-            BuildableName = "MockingBird.framework"
-            BlueprintName = "MockingBird"
-            ReferencedContainer = "container:MockingBird.xcodeproj">
+            BuildableName = "Moxie.framework"
+            BlueprintName = "Moxie"
+            ReferencedContainer = "container:Moxie.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>

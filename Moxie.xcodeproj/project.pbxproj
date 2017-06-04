@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		964720DD1D8E2D5A008A4A84 /* VerificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964720DC1D8E2D5A008A4A84 /* VerificationTests.swift */; };
-		966BCEDF1DA0403000A9097E /* ExplainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966BCEDE1DA0403000A9097E /* ExplainTests.swift */; };
-		969174671DDAA5260028B029 /* Mockable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969174661DDAA5260028B029 /* Mockable.swift */; };
-		969174691DDAAD2F0028B029 /* MockableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969174681DDAAD2F0028B029 /* MockableTests.swift */; };
-		_LinkFileRef_MockingBird_via_MockingBirdTests /* MockingBird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_MockingBird" /* MockingBird.framework */; };
-		__src_cc_ref_Sources/MockingBird.swift /* MockingBird.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/MockingBird.swift /* MockingBird.swift */; };
-		__src_cc_ref_Tests/MockingBirdTests/MockingBirdTests.swift /* StubbingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/MockingBirdTests/MockingBirdTests.swift /* StubbingTests.swift */; };
+		96252BE01EE3969B00BD038B /* VerificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F0DF81EE3928E0027E43D /* VerificationTests.swift */; };
+		96252BE11EE396A000BD038B /* StubbingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F0DF71EE3928E0027E43D /* StubbingTests.swift */; };
+		96252BE21EE396A300BD038B /* MockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F0DF61EE3928E0027E43D /* MockTests.swift */; };
+		96252BE31EE396A700BD038B /* ExplainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F0DF51EE3928E0027E43D /* ExplainTests.swift */; };
+		965F0DFF1EE392F50027E43D /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F0DFD1EE392F50027E43D /* Mock.swift */; };
+		965F0E001EE392F50027E43D /* Moxie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F0DFE1EE392F50027E43D /* Moxie.swift */; };
+		_LinkFileRef_MockingBird_via_MockingBirdTests /* Moxie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_MockingBird" /* Moxie.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,16 +27,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		964720DC1D8E2D5A008A4A84 /* VerificationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationTests.swift; sourceTree = "<group>"; };
-		966BCEDE1DA0403000A9097E /* ExplainTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplainTests.swift; sourceTree = "<group>"; };
-		969174661DDAA5260028B029 /* Mockable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mockable.swift; sourceTree = "<group>"; };
-		969174681DDAAD2F0028B029 /* MockableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockableTests.swift; sourceTree = "<group>"; };
-		__PBXFileRef_MockingBird.xcodeproj/Configs/Project.xcconfig /* MockingBird.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MockingBird.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
+		96252BE41EE396C900BD038B /* MoxieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoxieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		96252BE51EE3971200BD038B /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Moxie.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
+		965F0DF51EE3928E0027E43D /* ExplainTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExplainTests.swift; path = Tests/MoxieTests/ExplainTests.swift; sourceTree = SOURCE_ROOT; };
+		965F0DF61EE3928E0027E43D /* MockTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockTests.swift; path = Tests/MoxieTests/MockTests.swift; sourceTree = SOURCE_ROOT; };
+		965F0DF71EE3928E0027E43D /* StubbingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StubbingTests.swift; path = Tests/MoxieTests/StubbingTests.swift; sourceTree = SOURCE_ROOT; };
+		965F0DF81EE3928E0027E43D /* VerificationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerificationTests.swift; path = Tests/MoxieTests/VerificationTests.swift; sourceTree = SOURCE_ROOT; };
+		965F0DFD1EE392F50027E43D /* Mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Mock.swift; path = Moxie/Mock.swift; sourceTree = "<group>"; };
+		965F0DFE1EE392F50027E43D /* Moxie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Moxie.swift; path = Moxie/Moxie.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/MockingBird.swift /* MockingBird.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockingBird.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/MockingBirdTests/MockingBirdTests.swift /* StubbingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubbingTests.swift; sourceTree = "<group>"; };
-		"_____Product_MockingBird" /* MockingBird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MockingBird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"_____Product_MockingBirdTests" /* MockingBirdTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = MockingBirdTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_MockingBird" /* Moxie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Moxie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				_LinkFileRef_MockingBird_via_MockingBirdTests /* MockingBird.framework in Frameworks */,
+				_LinkFileRef_MockingBird_via_MockingBirdTests /* Moxie.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,7 +61,6 @@
 		TestProducts_ /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				"_____Product_MockingBirdTests" /* MockingBirdTests.xctest */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -81,7 +80,8 @@
 			isa = PBXGroup;
 			children = (
 				TestProducts_ /* Tests */,
-				"_____Product_MockingBird" /* MockingBird.framework */,
+				"_____Product_MockingBird" /* Moxie.framework */,
+				96252BE41EE396C900BD038B /* MoxieTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -89,7 +89,7 @@
 		"_____Configs_" /* Configs */ = {
 			isa = PBXGroup;
 			children = (
-				__PBXFileRef_MockingBird.xcodeproj/Configs/Project.xcconfig /* MockingBird.xcodeproj/Configs/Project.xcconfig */,
+				96252BE51EE3971200BD038B /* Project.xcconfig */,
 			);
 			name = Configs;
 			sourceTree = "<group>";
@@ -97,37 +97,37 @@
 		"_____Sources_" /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				"_______Group_MockingBird" /* MockingBird */,
+				"_______Group_MockingBird" /* Moxie */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
 		};
-		"_______Group_MockingBird" /* MockingBird */ = {
+		"_______Group_MockingBird" /* Moxie */ = {
 			isa = PBXGroup;
 			children = (
-				969174661DDAA5260028B029 /* Mockable.swift */,
-				__PBXFileRef_Sources/MockingBird.swift /* MockingBird.swift */,
+				965F0DFD1EE392F50027E43D /* Mock.swift */,
+				965F0DFE1EE392F50027E43D /* Moxie.swift */,
 			);
-			name = MockingBird;
+			name = Moxie;
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		"_______Group_MockingBirdTests" /* MockingBirdTests */ = {
+		"_______Group_MockingBirdTests" /* MoxieTests */ = {
 			isa = PBXGroup;
 			children = (
-				966BCEDE1DA0403000A9097E /* ExplainTests.swift */,
-				__PBXFileRef_Tests/MockingBirdTests/MockingBirdTests.swift /* StubbingTests.swift */,
-				964720DC1D8E2D5A008A4A84 /* VerificationTests.swift */,
-				969174681DDAAD2F0028B029 /* MockableTests.swift */,
+				965F0DF51EE3928E0027E43D /* ExplainTests.swift */,
+				965F0DF61EE3928E0027E43D /* MockTests.swift */,
+				965F0DF71EE3928E0027E43D /* StubbingTests.swift */,
+				965F0DF81EE3928E0027E43D /* VerificationTests.swift */,
 			);
-			name = MockingBirdTests;
+			name = MoxieTests;
 			path = Tests/MockingBirdTests;
 			sourceTree = "<group>";
 		};
 		"_______Tests_" /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				"_______Group_MockingBirdTests" /* MockingBirdTests */,
+				"_______Group_MockingBirdTests" /* MoxieTests */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -135,9 +135,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		"______Target_MockingBird" /* MockingBird */ = {
+		"______Target_MockingBird" /* Moxie */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = "_______Confs_MockingBird" /* Build configuration list for PBXNativeTarget "MockingBird" */;
+			buildConfigurationList = "_______Confs_MockingBird" /* Build configuration list for PBXNativeTarget "Moxie" */;
 			buildPhases = (
 				CompilePhase_MockingBird /* Sources */,
 				"___LinkPhase_MockingBird" /* Frameworks */,
@@ -146,14 +146,14 @@
 			);
 			dependencies = (
 			);
-			name = MockingBird;
+			name = Moxie;
 			productName = MockingBird;
-			productReference = "_____Product_MockingBird" /* MockingBird.framework */;
+			productReference = "_____Product_MockingBird" /* Moxie.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		"______Target_MockingBirdTests" /* MockingBirdTests */ = {
+		"______Target_MockingBirdTests" /* MoxieTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = "_______Confs_MockingBirdTests" /* Build configuration list for PBXNativeTarget "MockingBirdTests" */;
+			buildConfigurationList = "_______Confs_MockingBirdTests" /* Build configuration list for PBXNativeTarget "MoxieTests" */;
 			buildPhases = (
 				CompilePhase_MockingBirdTests /* Sources */,
 				"___LinkPhase_MockingBirdTests" /* Frameworks */,
@@ -163,9 +163,9 @@
 			dependencies = (
 				__Dependency_MockingBird /* PBXTargetDependency */,
 			);
-			name = MockingBirdTests;
+			name = MoxieTests;
 			productName = MockingBirdTests;
-			productReference = "_____Product_MockingBirdTests" /* MockingBirdTests.xctest */;
+			productReference = 96252BE41EE396C900BD038B /* MoxieTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -176,7 +176,7 @@
 			attributes = {
 				LastUpgradeCheck = 9999;
 			};
-			buildConfigurationList = "___RootConfs_" /* Build configuration list for PBXProject "MockingBird" */;
+			buildConfigurationList = "___RootConfs_" /* Build configuration list for PBXProject "Moxie" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -188,8 +188,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				"______Target_MockingBird" /* MockingBird */,
-				"______Target_MockingBirdTests" /* MockingBirdTests */,
+				"______Target_MockingBird" /* Moxie */,
+				"______Target_MockingBirdTests" /* MoxieTests */,
 			);
 		};
 /* End PBXProject section */
@@ -199,8 +199,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				__src_cc_ref_Sources/MockingBird.swift /* MockingBird.swift in Sources */,
-				969174671DDAA5260028B029 /* Mockable.swift in Sources */,
+				965F0E001EE392F50027E43D /* Moxie.swift in Sources */,
+				965F0DFF1EE392F50027E43D /* Mock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,10 +208,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				964720DD1D8E2D5A008A4A84 /* VerificationTests.swift in Sources */,
-				966BCEDF1DA0403000A9097E /* ExplainTests.swift in Sources */,
-				__src_cc_ref_Tests/MockingBirdTests/MockingBirdTests.swift /* StubbingTests.swift in Sources */,
-				969174691DDAAD2F0028B029 /* MockableTests.swift in Sources */,
+				96252BE01EE3969B00BD038B /* VerificationTests.swift in Sources */,
+				96252BE31EE396A700BD038B /* ExplainTests.swift in Sources */,
+				96252BE11EE396A000BD038B /* StubbingTests.swift in Sources */,
+				96252BE21EE396A300BD038B /* MockTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,7 +220,7 @@
 /* Begin PBXTargetDependency section */
 		__Dependency_MockingBird /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "______Target_MockingBird" /* MockingBird */;
+			target = "______Target_MockingBird" /* Moxie */;
 			targetProxy = 966FDEC61D6A1AA000774132 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -231,11 +231,11 @@
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				INFOPLIST_FILE = MockingBird.xcodeproj/MockingBird_Info.plist;
+				INFOPLIST_FILE = Moxie.xcodeproj/Moxie_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = MockingBird;
+				PRODUCT_BUNDLE_IDENTIFIER = Moxie;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 			};
@@ -246,10 +246,10 @@
 			buildSettings = {
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				INFOPLIST_FILE = MockingBird.xcodeproj/MockingBirdTests_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_NAME = MoxieTests;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -259,11 +259,11 @@
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				INFOPLIST_FILE = MockingBird.xcodeproj/MockingBird_Info.plist;
+				INFOPLIST_FILE = Moxie.xcodeproj/Moxie_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = MockingBird;
+				PRODUCT_BUNDLE_IDENTIFIER = Moxie;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -275,10 +275,10 @@
 			buildSettings = {
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				INFOPLIST_FILE = MockingBird.xcodeproj/MockingBirdTests_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_NAME = MoxieTests;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -286,7 +286,6 @@
 		};
 		"_____Release_" /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = __PBXFileRef_MockingBird.xcodeproj/Configs/Project.xcconfig /* MockingBird.xcodeproj/Configs/Project.xcconfig */;
 			buildSettings = {
 				SWIFT_VERSION = 3.0;
 			};
@@ -294,7 +293,6 @@
 		};
 		"_______Debug_" /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = __PBXFileRef_MockingBird.xcodeproj/Configs/Project.xcconfig /* MockingBird.xcodeproj/Configs/Project.xcconfig */;
 			buildSettings = {
 				SWIFT_VERSION = 3.0;
 			};
@@ -303,7 +301,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		"___RootConfs_" /* Build configuration list for PBXProject "MockingBird" */ = {
+		"___RootConfs_" /* Build configuration list for PBXProject "Moxie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				"_______Debug_" /* Debug */,
@@ -312,7 +310,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		"_______Confs_MockingBird" /* Build configuration list for PBXNativeTarget "MockingBird" */ = {
+		"_______Confs_MockingBird" /* Build configuration list for PBXNativeTarget "Moxie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				"___DebugConf_MockingBird" /* Debug */,
@@ -321,7 +319,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		"_______Confs_MockingBirdTests" /* Build configuration list for PBXNativeTarget "MockingBirdTests" */ = {
+		"_______Confs_MockingBirdTests" /* Build configuration list for PBXNativeTarget "MoxieTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				"___DebugConf_MockingBirdTests" /* Debug */,

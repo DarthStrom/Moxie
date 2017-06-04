@@ -1,6 +1,5 @@
 import XCTest
-
-import MockingBird
+import Moxie
 
 class VerificationTests: XCTestCase {
 
