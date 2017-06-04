@@ -1,5 +1,5 @@
 # Moxie
-[![Build Status](https://travis-ci.org/DarthStrom/MockingBird.svg?branch=master)](https://travis-ci.org/DarthStrom/MockingBird)
+[![Build Status](https://travis-ci.org/DarthStrom/Moxie.svg?branch=master)](https://travis-ci.org/DarthStrom/Moxie)
 
 A mocking library for Swift
 

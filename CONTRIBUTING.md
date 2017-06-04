@@ -4,8 +4,8 @@ Thanks in advance for your help!  Even just using Moxie in your project is a con
 
 ## Reporting an issue
 
-* Check to make sure the issue has not already been reported by searching in the [Issues](https://github.com/DarthStrom/MockingBird/issues)
-* If you can't find an existing issue, you can [submit a new one](https://github.com/DarthStrom/MockingBird/issues/new). Make sure to include steps to reproduce, what the actual behavior was and what you expected it to be.  If possible, also include an executable test case.
+* Check to make sure the issue has not already been reported by searching in the [Issues](https://github.com/DarthStrom/Moxie/issues)
+* If you can't find an existing issue, you can [submit a new one](https://github.com/DarthStrom/Moxie/issues/new). Make sure to include steps to reproduce, what the actual behavior was and what you expected it to be.  If possible, also include an executable test case.
 
 ## Fixing an issue
 
