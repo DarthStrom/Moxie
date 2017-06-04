@@ -1,6 +1,6 @@
 # How to contribute
 
-Thanks in advance for your help!  Even just using MockingBird in your project is a contribution in itself.
+Thanks in advance for your help!  Even just using Moxie in your project is a contribution in itself.
 
 ## Reporting an issue
 

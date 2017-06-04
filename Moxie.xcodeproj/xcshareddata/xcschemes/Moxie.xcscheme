@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "______Target_MockingBird"
+               BlueprintIdentifier = "______Target_Moxie"
                BuildableName = "Moxie.framework"
                BlueprintName = "Moxie"
                ReferencedContainer = "container:Moxie.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "______Target_MockingBirdTests"
+               BlueprintIdentifier = "______Target_MoxieTests"
                BuildableName = "MoxieTests.xctest"
                BlueprintName = "MoxieTests"
                ReferencedContainer = "container:Moxie.xcodeproj">
@@ -55,7 +55,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "______Target_MockingBird"
+            BlueprintIdentifier = "______Target_Moxie"
             BuildableName = "Moxie.framework"
             BlueprintName = "Moxie"
             ReferencedContainer = "container:Moxie.xcodeproj">
