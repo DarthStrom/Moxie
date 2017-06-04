@@ -3,6 +3,8 @@
 
 A tasty mocking library for Swift
 
+![Moxie](moxie.jpeg)
+
 ## Stubbing
 
 First, make a mock object that conforms to the Mock protocol with an instance of Moxie.
