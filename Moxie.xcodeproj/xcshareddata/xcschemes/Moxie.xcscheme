@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "______Target_MockingBird"
-               BuildableName = "MockingBird.framework"
-               BlueprintName = "MockingBird"
-               ReferencedContainer = "container:MockingBird.xcodeproj">
+               BlueprintIdentifier = "______Target_Moxie"
+               BuildableName = "Moxie.framework"
+               BlueprintName = "Moxie"
+               ReferencedContainer = "container:Moxie.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "______Target_MockingBirdTests"
-               BuildableName = "MockingBirdTests.xctest"
-               BlueprintName = "MockingBirdTests"
-               ReferencedContainer = "container:MockingBird.xcodeproj">
+               BlueprintIdentifier = "______Target_MoxieTests"
+               BuildableName = "MoxieTests.xctest"
+               BlueprintName = "MoxieTests"
+               ReferencedContainer = "container:Moxie.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,10 +55,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "______Target_MockingBird"
-            BuildableName = "MockingBird.framework"
-            BlueprintName = "MockingBird"
-            ReferencedContainer = "container:MockingBird.xcodeproj">
+            BlueprintIdentifier = "______Target_Moxie"
+            BuildableName = "Moxie.framework"
+            BlueprintName = "Moxie"
+            ReferencedContainer = "container:Moxie.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>

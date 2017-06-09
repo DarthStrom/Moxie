@@ -1,7 +1,7 @@
 import XCTest
-import MockingBird
+import Moxie
 
-class MockableTests: XCTestCase {
+class MockTests: XCTestCase {
     
     var subject = Subject()
 
@@ -89,8 +89,8 @@ class MockableTests: XCTestCase {
     }
 }
 
-class Subject: Mockable {
-    var mb = MockingBird()
+class Subject: Mock {
+    var moxie = Moxie()
 
     func noparams() -> Any? {
         return value(forFunction: "noparams")

@@ -1,5 +1,5 @@
 language: objective-c
 osx_image: xcode8
 script:
-  - xcodebuild -scheme MockingBird build test
+  - xcodebuild -scheme Moxie build test
 
