@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "Moxie"
-  s.version = "0.1.1-alpha"
+  s.version = "0.1.2"
   s.summary = "A mocking library for Swift."
   s.description = <<-DESC
     Moxie makes creating mocks easier in Swift.
