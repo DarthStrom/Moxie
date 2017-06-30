@@ -7,26 +7,28 @@ public class Moxie {
 
     /// Sets a return value for a stubbed function call.
     ///
-    /// - parameter function:       The name of the stubbed function.
-    /// - parameter whenCalledWith: An array containing the parameters of the stubbed function call.
-    /// - parameter return:         An array containing the values to return when the stubbed function is called.
+    /// - Parameters:
+    ///     - function:       The name of the stubbed function.
+    ///     - whenCalledWith: An array containing the parameters of the stubbed function call.
+    ///     - return:         An array containing the values to return when the stubbed function is called.
     ///                             The last value is returned repeatedly therafter.  The default is `[]`.
-    public func stub(function: String, whenCalledWith parameters: [Any] = [], return value: [Any] = []) {
-        if !value.isEmpty {
+    public func stub(function: String, whenCalledWith parameters: [Any] = [], return values: [Any] = []) {
+        if !values.isEmpty {
             if stubbings[function] == nil {
-                stubbings[function] = [getKey(for: parameters): value]
+                stubbings[function] = [getKey(for: parameters): values]
             } else {
-                stubbings[function]![getKey(for: parameters)] = value
+                stubbings[function]![getKey(for: parameters)] = values
             }
         }
     }
 
     /// The value that has been specified for the stubbed function.
     ///
-    /// - parameter forFunction:    The name of the stubbed function.
-    /// - parameter whenCalledWith: An array containing the parameters of the stubbed function call.
+    /// - Parameters:
+    ///     - forFunction:    The name of the stubbed function.
+    ///     - whenCalledWith: An array containing the parameters of the stubbed function call.
     ///
-    /// - returns: The previously specified value (via `stub`) for the function call or `nil` if none was specified.
+    /// - Returns: The previously specified value (via `stub`) for the function call or `nil` if none was specified.
     public func value<T>(forFunction function: String, whenCalledWith parameters: [Any] = []) -> T? {
         let values = stubbings[function]?[getKey(for: parameters)] as? [T]
         if let value = values?.first {
@@ -39,28 +41,31 @@ public class Moxie {
 
     /// The number of invocations for the function with the parameters specified.
     ///
-    /// - parameter forFunction: The name of the invoked function.
-    /// - parameter with:        An array containing the parameters of the invoked function.
+    /// - Parameters:
+    ///     - forFunction: The name of the invoked function.
+    ///     - with:        An array containing the parameters of the invoked function.
     ///
-    /// - returns: The number of invocations of the function with the parameters specified.
+    /// - Returns: The number of invocations of the function with the parameters specified.
     public func invocations(forFunction function: String, with parameters: [Any] = []) -> Int {
         return invocations[function]?[getKey(for: parameters)] ?? 0
     }
 
     /// Was the function was invoked with the given parameters.
     ///
-    /// - parameter function: The name of the invoked function.
-    /// - parameter with:     An array containing the parameters of the invoked function.
+    /// - Parameters:
+    ///     - function: The name of the invoked function.
+    ///     - with:     An array containing the parameters of the invoked function.
     ///
-    /// - returns: `true` if the number of invocations is one or more.
+    /// - Returns: `true` if the number of invocations is one or more.
     public func invoked(function: String, with parameters: [Any] = []) -> Bool {
         return invocations(forFunction: function, with: parameters) > 0
     }
 
     /// Records that a function was invoked with the given parameters.
     ///
-    /// - parameter function:      The name of the invoked function.
-    /// - parameter wasCalledWith: An array containing the parameters of the invoked function.
+    /// - Parameters:
+    ///     - function:      The name of the invoked function.
+    ///     - wasCalledWith: An array containing the parameters of the invoked function.
     public func record(function: String, wasCalledWith parameters: [Any] = []) {
         let key = getKey(for: parameters)
         if invocations[function] == nil {
@@ -74,9 +79,9 @@ public class Moxie {
 
     /// A description of interactions with the mocked function.
     ///
-    /// - parameter withFunction: The name of the mocked function.
+    /// - Parameter withFunction: The name of the mocked function.
     ///
-    /// - returns: A description of interactions.
+    /// - Returns: A description of interactions.
     public func interactions(withFunction function: String) -> String {
         return getDescription(for: function)
     }
