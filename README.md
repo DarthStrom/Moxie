@@ -47,7 +47,7 @@ struct MockStruct: Mockable {
     var moxie = Moxie()
 
     func validate(id: Int, name: String) -> Bool {
-        return value(forFunction: "validate", whenCalledWith: id, name) ?? false
+        return value(forFunction: "validate", whenCalledWith: [id, name]) ?? false
     }
 }
 
@@ -56,7 +56,7 @@ class StructTests: XCTestCase {
     let mock = MockStruct()
 
     func testItWorks() {
-        mock.stub(function: "validate", whenCalledWith: 27, "George", return: true)
+        mock.stub(function: "validate", whenCalledWith: [27, "George"], return: true)
 
         XCTAssertTrue(mock.validate(id: 27, name: "George"))
     }
@@ -79,7 +79,7 @@ struct MockStruct: Mock {
     var moxie = Moxie()
 
     func update(description: String) {
-        record(function: "update", wasCalledWith: description)
+        record(function: "update", wasCalledWith: [description])
     }
 }
 
@@ -95,7 +95,7 @@ class StructTests: XCTestCase {
         mock.update(description: "updated")
         mock.update(description: "updated")
 
-        XCTAssertTrue(mock.invoked(function: "update", with: "updated"))
+        XCTAssertTrue(mock.invoked(function: "update", with: ["updated"]))
     }
 
     func testUpdateCalledThreeTimes() {
@@ -103,7 +103,7 @@ class StructTests: XCTestCase {
         mock.update(description: "thrice")
         mock.update(description: "thrice")
 
-        XCTAssertEqual(3, mock.invocations(forFunction: "update", with: "thrice"))
+        XCTAssertEqual(3, mock.invocations(forFunction: "update", with: ["thrice"]))
     }
 }
 ```
