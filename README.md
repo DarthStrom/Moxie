@@ -1,13 +1,67 @@
 # Moxie
 [![Build Status](https://travis-ci.org/DarthStrom/Moxie.svg?branch=master)](https://travis-ci.org/DarthStrom/Moxie)
-
 A tasty mocking library for Swift
 
 ![Moxie](moxie.jpeg)
 
+## Creating mocks
+All mock objects must conform to the Mock protocol and have an instance of Moxie.
+
+```swift
+import Moxie
+
+class MockClass: Mock {
+    var moxie = Moxie()
+}
+```
+
+Additionally, all mock objects must be of the same type as the object being mocked. This can be accomplished via extension, or adoption of the mocked object's protocol. If the object being mocked is not a protocol type (such as a struct), then it cannot be extended and so it must be mocked via protocol adoption.
+
+###  Extension
+```swift
+import Moxie
+
+class ExampleClass {
+    func foo() -> String {
+       return "this is an example"
+    }
+}
+
+class MockClass: ExampleClass, Mock {
+    var moxie = Moxie()
+
+    override func foo() -> String {
+        return "this is a different example"
+    }
+}
+```
+
+### Protocol adoption
+```swift
+import Moxie
+
+protocol ExampleProtocol {
+    func foo() -> String
+}
+
+struct ExampleStruct: ExampleProtocol {
+    func foo() -> String {
+        return "this is an example"
+    }
+}
+
+struct MockExampleStruct: Mock, ExampleProtocol {
+    var moxie = Moxie()
+
+    func foo() -> String {
+        return "this is a different example"
+    }
+}
+```
+
 ## Stubbing
 
-First, make a mock object that conforms to the Mock protocol with an instance of Moxie.
+First, make a mock object that adopts the Mock protocol and satisifies the type requirements for the mock.
 
 Then in the function you want to stub you can use `value` to get the value to return.
 
@@ -17,55 +71,67 @@ In your test, you can use `stub` to set the stubbed value.
 import Moxie
 import XCTest
 
-struct MockStruct: Mock {
+class ExampleClass {
+    func foo() -> String {
+        return "this is an example"
+    }
+}
+
+class MockExampleClass: ExampleClass, Mock {
     var moxie = Moxie()
 
-    func foo() -> String {
+    override func foo() -> String {
         return value(forFunction: "foo") ?? ""
     }
 }
 
-class StructTests: XCTestCase {
+class ExampleClassTests: XCTestCase {
 
-    let mock = MockStruct()
+    let mock = MockExampleClass()
 
     func testItWorks() {
-        mock.stub(function: "foo", return: "bar")
+        mock.stub(function: "foo", return: "this is a different example")
 
-        XCTAssertEqual("bar", mock.foo())
+        XCTAssertEqual("this is a different example", mock.foo())
     }
 }
-
 ```
+
 You can also stub for a specific set of arguments:
 
 ```swift
 import Moxie
 import XCTest
 
-struct MockStruct: Mockable {
-    var moxie = Moxie()
-
-    func validate(id: Int, name: String) -> Bool {
-        return value(forFunction: "validate", whenCalledWith: [id, name]) ?? false
+class ExampleClass {
+    func foo(id: Int, name: String) -> Bool {
+        return false
     }
 }
 
-class StructTests: XCTestCase {
+class MockExampleClass: ExampleClass, Mock {
+    var moxie = Moxie()
 
-    let mock = MockStruct()
+    override func foo(id: Int, name: String) -> Bool {
+        return value(forFunction: "foo", whenCalledWith: [id, name]) ?? false
+    }
+}
+
+class ExampleClassTests: XCTestCase {
+
+    let mock = MockExampleClass()
 
     func testItWorks() {
-        mock.stub(function: "validate", whenCalledWith: [27, "George"], return: true)
+        mock.stub(function: "foo", whenCalledWith: [27, "George"], return: true)
 
-        XCTAssertTrue(mock.validate(id: 27, name: "George"))
+        XCTAssertTrue(mock.foo(id: 27, name: "George"))
     }
 }
 ```
 
 ## Verifying a function was invoked
 
-First, make a mock object that conforms to the Mock protocol with an instance of Moxie.
+First, make a mock object that conforms to the Mock protocol with an instance of Moxie, and which is also of the same type as the object being mocked
 
 Then in the function you want to verify, call `record` to store the invocation any time that function is called.
 
@@ -75,35 +141,41 @@ In the test, you can use `invocations` to get the number of times the function w
 import Moxie
 import XCTest
 
-struct MockStruct: Mock {
-    var moxie = Moxie()
-
-    func update(description: String) {
-        record(function: "update", wasCalledWith: [description])
+class ExampleClass {
+    func foo(description: String) {
+        // functionality
     }
 }
 
-class StructTests: XCTestCase {
+class MockExampleClass: ExampleClass, Mock {
+    var moxie = Moxie()
 
-    let mock = MockStruct()
+    override func foo(description: String) {
+        record(function: "foo", wasCalledWith: [description])
+    }
+}
+
+class ExampleClassTests: XCTestCase {
+
+    let mock = MockExampleClass()
 
     func testUpdateWasNotCalled() {
-        XCTAssertFalse(mock.invoked(function: "update"))
+        XCTAssertFalse(mock.invoked(function: "foo"))
     }
 
     func testUpdateCalledWithBlankByDefault() {
-        mock.update(description: "updated")
-        mock.update(description: "updated")
+        mock.foo(description: "updated")
+        mock.foo(description: "updated")
 
-        XCTAssertTrue(mock.invoked(function: "update", with: ["updated"]))
+        XCTAssertTrue(mock.invoked(function: "foo", with: ["updated"]))
     }
 
     func testUpdateCalledThreeTimes() {
-        mock.update(description: "thrice")
-        mock.update(description: "thrice")
-        mock.update(description: "thrice")
+        mock.foo(description: "thrice")
+        mock.foo(description: "thrice")
+        mock.foo(description: "thrice")
 
-        XCTAssertEqual(3, mock.invocations(forFunction: "update", with: ["thrice"]))
+        XCTAssertEqual(3, mock.invocations(forFunction: "foo", with: ["thrice"]))
     }
 }
 ```
