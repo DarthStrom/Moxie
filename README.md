@@ -15,9 +15,9 @@ class MockClass: Mock {
 }
 ```
 
-Additionally, all mock objects must be of the same type as the object being mocked. This can be accomplished via extension, or adoption of the mocked object's protocol. If the object being mocked is not a protocol type (such as a struct), then it cannot be extended and so it must be mocked via protocol adoption.
+Additionally, all mock objects must be of the same type as the object being mocked. This can be accomplished via inheritence or adoption of the mocked object's protocol. If the object being mocked is not a protocol type (such as a struct), then it cannot be extended and so it must be mocked via protocol adoption.
 
-###  Extension
+### Inheritance
 ```swift
 import Moxie
 
@@ -50,7 +50,7 @@ struct ExampleStruct: ExampleProtocol {
     }
 }
 
-struct MockExampleStruct: Mock, ExampleProtocol {
+struct MockExampleStruct: ExampleProtocol, Mock {
     var moxie = Moxie()
 
     func foo() -> String {
@@ -61,7 +61,7 @@ struct MockExampleStruct: Mock, ExampleProtocol {
 
 ## Stubbing
 
-First, make a mock object that adopts the Mock protocol and satisifies the type requirements for the mock.
+First, make a mock object that adopts the Mock protocol and satisfies the type requirements for the mock.
 
 Then in the function you want to stub you can use `value` to get the value to return.
 
@@ -71,16 +71,20 @@ In your test, you can use `stub` to set the stubbed value.
 import Moxie
 import XCTest
 
-class ExampleClass {
+protocol ExampleProtocol {
+    func foo() -> String
+}
+
+class ExampleClass: ExampleProtocol {
     func foo() -> String {
         return "this is an example"
     }
 }
 
-class MockExampleClass: ExampleClass, Mock {
+class MockExampleClass: ExampleProtocol, Mock {
     var moxie = Moxie()
 
-    override func foo() -> String {
+    func foo() -> String {
         return value(forFunction: "foo") ?? ""
     }
 }
@@ -103,16 +107,20 @@ You can also stub for a specific set of arguments:
 import Moxie
 import XCTest
 
+protocol ExampleProtocol {
+    func foo(id: Int, name: String) -> Bool
+}
+
 class ExampleClass {
     func foo(id: Int, name: String) -> Bool {
         return false
     }
 }
 
-class MockExampleClass: ExampleClass, Mock {
+class MockExampleClass: ExampleProtocol, Mock {
     var moxie = Moxie()
 
-    override func foo(id: Int, name: String) -> Bool {
+    func foo(id: Int, name: String) -> Bool {
         return value(forFunction: "foo", whenCalledWith: [id, name]) ?? false
     }
 }
@@ -131,7 +139,7 @@ class ExampleClassTests: XCTestCase {
 
 ## Verifying a function was invoked
 
-First, make a mock object that conforms to the Mock protocol with an instance of Moxie, and which is also of the same type as the object being mocked
+First, make a mock object that conforms to the Mock protocol with an instance of Moxie, and which also conforms to the same protocol as the object which is being mocked.
 
 Then in the function you want to verify, call `record` to store the invocation any time that function is called.
 
@@ -141,16 +149,20 @@ In the test, you can use `invocations` to get the number of times the function w
 import Moxie
 import XCTest
 
-class ExampleClass {
+protocol ExampleProtocol {
+    func foo(description: String)
+}
+
+class ExampleClass: ExampleProtocol {
     func foo(description: String) {
         // functionality
     }
 }
 
-class MockExampleClass: ExampleClass, Mock {
+class MockExampleClass: ExampleProtocol, Mock {
     var moxie = Moxie()
 
-    override func foo(description: String) {
+    func foo(description: String) {
         record(function: "foo", wasCalledWith: [description])
     }
 }
@@ -159,18 +171,18 @@ class ExampleClassTests: XCTestCase {
 
     let mock = MockExampleClass()
 
-    func testUpdateWasNotCalled() {
+    func testFooWasNotCalled() {
         XCTAssertFalse(mock.invoked(function: "foo"))
     }
 
-    func testUpdateCalledWithBlankByDefault() {
+    func testFooCalledWithBlankByDefault() {
         mock.foo(description: "updated")
         mock.foo(description: "updated")
 
         XCTAssertTrue(mock.invoked(function: "foo", with: ["updated"]))
     }
 
-    func testUpdateCalledThreeTimes() {
+    func testFooCalledThreeTimes() {
         mock.foo(description: "thrice")
         mock.foo(description: "thrice")
         mock.foo(description: "thrice")
