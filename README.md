@@ -175,14 +175,14 @@ class ExampleClassTests: XCTestCase {
         XCTAssertFalse(mock.invoked(function: "foo"))
     }
 
-    func testFooCalledWithBlankByDefault() {
+    func testFooWasCalled() {
         mock.foo(description: "updated")
         mock.foo(description: "updated")
 
         XCTAssertTrue(mock.invoked(function: "foo", with: ["updated"]))
     }
 
-    func testFooCalledThreeTimes() {
+    func testFooWasCalledThreeTimes() {
         mock.foo(description: "thrice")
         mock.foo(description: "thrice")
         mock.foo(description: "thrice")
