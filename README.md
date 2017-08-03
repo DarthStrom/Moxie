@@ -1,193 +1,73 @@
 # Moxie
 [![Build Status](https://travis-ci.org/DarthStrom/Moxie.svg?branch=master)](https://travis-ci.org/DarthStrom/Moxie)
-A tasty mocking library for Swift
+[![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/DarthStrom/Moxie/blob/master/LICENSE)
+[![Pod](https://img.shields.io/cocoapods/v/Moxie.svg)](https://cocoapods.org/pods/Moxie)
+
+A spunky mocking library for Swift
 
 ![Moxie](moxie.jpeg)
 
-## Creating mocks
-All mock objects must conform to the Mock protocol and have an instance of Moxie.
+# Using Moxie
+
+Let's say you have a protocol you want to mock.
+
+```swift
+protocol List {
+    mutating func add(_ item: String)
+    mutating func clear()
+
+    func get(_ index: Int) -> String?
+}
+```
+
+You can use Moxie to create a mock.
 
 ```swift
 import Moxie
 
-class MockClass: Mock {
+struct MockList: Mock, List {
     var moxie = Moxie()
-}
-```
 
-Additionally, all mock objects must be of the same type as the object being mocked. This can be accomplished via inheritence or adoption of the mocked object's protocol. If the object being mocked is not a protocol type (such as a struct), then it cannot be extended and so it must be mocked via protocol adoption.
-
-### Inheritance
-```swift
-import Moxie
-
-class ExampleClass {
-    func foo() -> String {
-       return "this is an example"
+    mutating func add(_ item: String) {
+        record(function: "add", wasCalledWith: [item])
     }
-}
 
-class MockClass: ExampleClass, Mock {
-    var moxie = Moxie()
+    mutating func clear() {
+        record(function: "clear")
+    }
 
-    override func foo() -> String {
-        return "this is a different example"
+    func get(_ index: Int) -> String? {
+        return value(forFunction: "get", whenCalledWith: [index])
     }
 }
 ```
 
-### Protocol adoption
-```swift
-import Moxie
-
-protocol ExampleProtocol {
-    func foo() -> String
-}
-
-struct ExampleStruct: ExampleProtocol {
-    func foo() -> String {
-        return "this is an example"
-    }
-}
-
-struct MockExampleStruct: ExampleProtocol, Mock {
-    var moxie = Moxie()
-
-    func foo() -> String {
-        return "this is a different example"
-    }
-}
-```
-
-## Stubbing
-
-First, make a mock object that adopts the Mock protocol and satisfies the type requirements for the mock.
-
-Then in the function you want to stub you can use `value` to get the value to return.
-
-In your test, you can use `stub` to set the stubbed value.
+Then you can use it in your tests.
 
 ```swift
-import Moxie
-import XCTest
+func testList() {
 
-protocol ExampleProtocol {
-    func foo() -> String
-}
+    var mockList = MockList()
 
-class ExampleClass: ExampleProtocol {
-    func foo() -> String {
-        return "this is an example"
-    }
-}
+    // verifying invocations
+    mockList.add("one")
+    mockList.clear()
 
-class MockExampleClass: ExampleProtocol, Mock {
-    var moxie = Moxie()
+    XCTAssertTrue(mockList.invoked(function: "add", with: ["one"]))
+    XCTAssertTrue(mockList.invoked(function: "clear"))
 
-    func foo() -> String {
-        return value(forFunction: "foo") ?? ""
-    }
-}
+    // stubbing
+    mockList.stub(function: "get", whenCalledWith: [0], return: "first")
 
-class ExampleClassTests: XCTestCase {
+    XCTAssertEqual("first", mockList.get(0))
 
-    let mock = MockExampleClass()
-
-    func testItWorks() {
-        mock.stub(function: "foo", return: "this is a different example")
-
-        XCTAssertEqual("this is a different example", mock.foo())
-    }
+    // nil because get(999) was not stubbed
+    XCTAssertNil(mockList.get(999))
 }
 ```
 
-You can also stub for a specific set of arguments:
-
-```swift
-import Moxie
-import XCTest
-
-protocol ExampleProtocol {
-    func foo(id: Int, name: String) -> Bool
-}
-
-class ExampleClass {
-    func foo(id: Int, name: String) -> Bool {
-        return false
-    }
-}
-
-class MockExampleClass: ExampleProtocol, Mock {
-    var moxie = Moxie()
-
-    func foo(id: Int, name: String) -> Bool {
-        return value(forFunction: "foo", whenCalledWith: [id, name]) ?? false
-    }
-}
-
-class ExampleClassTests: XCTestCase {
-
-    let mock = MockExampleClass()
-
-    func testItWorks() {
-        mock.stub(function: "foo", whenCalledWith: [27, "George"], return: true)
-
-        XCTAssertTrue(mock.foo(id: 27, name: "George"))
-    }
-}
-```
-
-## Verifying a function was invoked
-
-First, make a mock object that conforms to the Mock protocol with an instance of Moxie, and which also conforms to the same protocol as the object which is being mocked.
-
-Then in the function you want to verify, call `record` to store the invocation any time that function is called.
-
-In the test, you can use `invocations` to get the number of times the function was called or `invoked` to get whether it was called at least once.
-
-```swift
-import Moxie
-import XCTest
-
-protocol ExampleProtocol {
-    func foo(description: String)
-}
-
-class ExampleClass: ExampleProtocol {
-    func foo(description: String) {
-        // functionality
-    }
-}
-
-class MockExampleClass: ExampleProtocol, Mock {
-    var moxie = Moxie()
-
-    func foo(description: String) {
-        record(function: "foo", wasCalledWith: [description])
-    }
-}
-
-class ExampleClassTests: XCTestCase {
-
-    let mock = MockExampleClass()
-
-    func testFooWasNotCalled() {
-        XCTAssertFalse(mock.invoked(function: "foo"))
-    }
-
-    func testFooWasCalled() {
-        mock.foo(description: "updated")
-        mock.foo(description: "updated")
-
-        XCTAssertTrue(mock.invoked(function: "foo", with: ["updated"]))
-    }
-
-    func testFooWasCalledThreeTimes() {
-        mock.foo(description: "thrice")
-        mock.foo(description: "thrice")
-        mock.foo(description: "thrice")
-
-        XCTAssertEqual(3, mock.invocations(forFunction: "foo", with: ["thrice"]))
-    }
-}
-```
+# Documentation
+1. [Installation](https://github.com/DarthStrom/Moxie/blob/master/Documentation/1-Installation.md)
+2. [Creating Mocks](https://github.com/DarthStrom/Moxie/blob/master/Documentation/2-CreatingMocks.md)
+3. [Stubbing](https://github.com/DarthStrom/Moxie/blob/master/Documentation/3-Stubbing.md)
+4. [Verifying Invocations](https://github.com/DarthStrom/Moxie/blob/master/Documentation/4-VerifyingInvocations.md)
