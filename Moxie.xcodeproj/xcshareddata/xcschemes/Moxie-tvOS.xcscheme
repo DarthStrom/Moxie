@@ -15,8 +15,22 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9683A8B31F4E48E900352D96"
-               BuildableName = "Moxie-tvOS.framework"
+               BuildableName = "Moxie.framework"
                BlueprintName = "Moxie-tvOS"
+               ReferencedContainer = "container:Moxie.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "962BF9061F4E64240095C294"
+               BuildableName = "Moxie tvOS Tests.xctest"
+               BlueprintName = "Moxie tvOS Tests"
                ReferencedContainer = "container:Moxie.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,7 +42,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "962BF9061F4E64240095C294"
+               BuildableName = "Moxie tvOS Tests.xctest"
+               BlueprintName = "Moxie tvOS Tests"
+               ReferencedContainer = "container:Moxie.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "9683A8B31F4E48E900352D96"
+            BuildableName = "Moxie.framework"
+            BlueprintName = "Moxie-tvOS"
+            ReferencedContainer = "container:Moxie.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -46,7 +79,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9683A8B31F4E48E900352D96"
-            BuildableName = "Moxie-tvOS.framework"
+            BuildableName = "Moxie.framework"
             BlueprintName = "Moxie-tvOS"
             ReferencedContainer = "container:Moxie.xcodeproj">
          </BuildableReference>
@@ -64,7 +97,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9683A8B31F4E48E900352D96"
-            BuildableName = "Moxie-tvOS.framework"
+            BuildableName = "Moxie.framework"
             BlueprintName = "Moxie-tvOS"
             ReferencedContainer = "container:Moxie.xcodeproj">
          </BuildableReference>

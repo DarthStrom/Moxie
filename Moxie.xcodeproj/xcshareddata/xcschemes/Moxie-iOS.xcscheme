@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "______Target_Moxie"
-               BuildableName = "Moxie_iOS.framework"
+               BuildableName = "Moxie.framework"
                BlueprintName = "Moxie-iOS"
                ReferencedContainer = "container:Moxie.xcodeproj">
             </BuildableReference>
@@ -28,12 +28,22 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "962BF9201F5741A50095C294"
+               BuildableName = "Moxie iOS Tests.xctest"
+               BlueprintName = "Moxie iOS Tests"
+               ReferencedContainer = "container:Moxie.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "______Target_Moxie"
-            BuildableName = "Moxie_iOS.framework"
+            BuildableName = "Moxie.framework"
             BlueprintName = "Moxie-iOS"
             ReferencedContainer = "container:Moxie.xcodeproj">
          </BuildableReference>
@@ -55,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "______Target_Moxie"
-            BuildableName = "Moxie_iOS.framework"
+            BuildableName = "Moxie.framework"
             BlueprintName = "Moxie-iOS"
             ReferencedContainer = "container:Moxie.xcodeproj">
          </BuildableReference>
@@ -73,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "______Target_Moxie"
-            BuildableName = "Moxie_iOS.framework"
+            BuildableName = "Moxie.framework"
             BlueprintName = "Moxie-iOS"
             ReferencedContainer = "container:Moxie.xcodeproj">
          </BuildableReference>

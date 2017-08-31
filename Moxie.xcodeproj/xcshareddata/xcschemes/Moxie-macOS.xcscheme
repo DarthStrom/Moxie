@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9683A8A91F4E48C100352D96"
-               BuildableName = "Moxie-macOS.framework"
+               BuildableName = "Moxie.framework"
                BlueprintName = "Moxie-macOS"
                ReferencedContainer = "container:Moxie.xcodeproj">
             </BuildableReference>
@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "______Target_MoxieTests"
-               BuildableName = "MoxieTests.xctest"
-               BlueprintName = "MoxieTests"
+               BuildableName = "Moxie macOS Tests.xctest"
+               BlueprintName = "Moxie macOS Tests"
                ReferencedContainer = "container:Moxie.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,8 +47,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "______Target_MoxieTests"
-               BuildableName = "MoxieTests.xctest"
-               BlueprintName = "MoxieTests"
+               BuildableName = "Moxie macOS Tests.xctest"
+               BlueprintName = "Moxie macOS Tests"
                ReferencedContainer = "container:Moxie.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9683A8A91F4E48C100352D96"
-            BuildableName = "Moxie-macOS.framework"
+            BuildableName = "Moxie.framework"
             BlueprintName = "Moxie-macOS"
             ReferencedContainer = "container:Moxie.xcodeproj">
          </BuildableReference>
@@ -79,7 +79,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9683A8A91F4E48C100352D96"
-            BuildableName = "Moxie-macOS.framework"
+            BuildableName = "Moxie.framework"
             BlueprintName = "Moxie-macOS"
             ReferencedContainer = "container:Moxie.xcodeproj">
          </BuildableReference>
@@ -97,7 +97,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9683A8A91F4E48C100352D96"
-            BuildableName = "Moxie-macOS.framework"
+            BuildableName = "Moxie.framework"
             BlueprintName = "Moxie-macOS"
             ReferencedContainer = "container:Moxie.xcodeproj">
          </BuildableReference>
