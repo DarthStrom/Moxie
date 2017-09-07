@@ -714,6 +714,7 @@
 				962BF9281F5741A50095C294 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 		9683A8AE1F4E48C100352D96 /* Build configuration list for PBXNativeTarget "Moxie-macOS" */ = {
 			isa = XCConfigurationList;
