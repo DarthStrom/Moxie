@@ -131,7 +131,6 @@
 		96AA8F2A1F819BC90083E2C5 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/tvOS/Quick.framework; sourceTree = "<group>"; };
 		96AA8F421F819D690083E2C5 /* ArgumentCaptureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentCaptureTests.swift; sourceTree = "<group>"; };
 		96D2FA501F89969300A2CED5 /* MockInvocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockInvocation.swift; path = Moxie/MockInvocation.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		"_____Product_Moxie" /* Moxie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Moxie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -214,7 +213,6 @@
 			isa = PBXGroup;
 			children = (
 				962BF9301F57A5730095C294 /* Moxie_Info.plist */,
-				__PBXFileRef_Package.swift /* Package.swift */,
 				"_____Configs_" /* Configs */,
 				"_____Sources_" /* Sources */,
 				"_______Tests_" /* Tests */,
