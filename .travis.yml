@@ -1,5 +1,6 @@
 language: objective-c
 osx_image: xcode8
 script:
+  - carthage bootstrap
   - xcodebuild -scheme Moxie-macOS build test
 
