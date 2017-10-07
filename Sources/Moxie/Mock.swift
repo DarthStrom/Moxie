@@ -22,26 +22,32 @@ public protocol Mock {
     ///
     /// - Parameters:
     ///     - forFunction: The name of the invoked function.
-    ///     - with:        An array containing parameters of the invoked function.
     ///
     /// - Returns: The number of invocations of the function with the parameters specified.
-    func invocations(forFunction function: String, with parameters: [Any]) -> Int
+    func invocations(forFunction function: String) -> Int
 
     /// Was the function was invoked with the given parameters?
     ///
     /// - Parameters:
     ///     - function: The name of the invoked function.
-    ///     - with:     An array containing parameters of the invoked function.
     ///
     /// - Returns: `true` if the number of invocations is one or more.
-    func invoked(function: String, with parameters: [Any]) -> Bool
+    func invoked(function: String) -> Bool
+
+    /// The parameters for a function invocation.
+    ///
+    /// - Parameters:
+    ///     - forFunction: The name of the invoked function.
+    ///     - invocation: The ordinal of the invocation (1-based, default 1)
+    /// - Returns: The parameters for the invocaton in an array
+    func parameters(forFunction function: String, invocation: Int) -> [Any?]
 
     /// Records that a function was invoked with the given parameters.
     ///
     /// - Parameters:
     ///     - function:      The name of the invoked function.
     ///     - wasCalledWith: An array containing parameters of the invoked function.
-    func record(function: String, wasCalledWith parameters: [Any])
+    func record(function: String, wasCalledWith parameters: [Any?])
 
     /// A description of interactions with the mocked function.
     ///
@@ -78,22 +84,30 @@ public extension Mock {
     ///
     /// - Parameters:
     ///     - forFunction: The name of the invoked function.
-    ///     - with:        An array containing parameters of the invoked function.
     ///
     /// - Returns: The number of invocations of the function with the parameters specified.
-    func invocations(forFunction function: String, with parameters: [Any] = []) -> Int {
-        return moxie.invocations(forFunction: function, with: parameters)
+    func invocations(forFunction function: String) -> Int {
+        return moxie.invocations(forFunction: function)
     }
 
     /// Was the function was invoked with the given parameters?
     ///
     /// - Parameters:
     ///     - function: The name of the invoked function.
-    ///     - with:     An array containing parameters of the invoked function.
     ///
     /// - Returns: `true` if the number of invocations is one or more.
-    func invoked(function: String, with parameters: [Any] = []) -> Bool {
-        return moxie.invoked(function: function, with: parameters)
+    func invoked(function: String) -> Bool {
+        return moxie.invoked(function: function)
+    }
+
+    /// The parameters for a function invocation.
+    ///
+    /// - Parameters:
+    ///     - forFunction: The name of the invoked function.
+    ///     - invocation: The ordinal of the invocation (1-based, default 1)
+    /// - Returns: The parameters for the invocaton in an array
+    func parameters(forFunction function: String, invocation: Int = 1) -> [Any?] {
+        return moxie.parameters(forFunction: function, invocation: invocation)
     }
 
     /// Records that a function was invoked with the given parameters.
@@ -101,7 +115,7 @@ public extension Mock {
     /// - Parameters:
     ///     - function:      The name of the invoked function.
     ///     - wasCalledWith: An array containing parameters of the invoked function.
-    func record(function: String, wasCalledWith parameters: [Any] = []) {
+    func record(function: String, wasCalledWith parameters: [Any?] = []) {
         moxie.record(function: function, wasCalledWith: parameters)
     }
 

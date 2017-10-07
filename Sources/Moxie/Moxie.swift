@@ -1,7 +1,7 @@
 public class Moxie {
 
     var stubbings = [String: [String: [Any]]]()
-    var invocations = [String: [String: Int]]()
+    var invocations = [MockInvocation]()
 
     public init() {}
 
@@ -39,26 +39,37 @@ public class Moxie {
         }
     }
 
-    /// The number of invocations for the function with the parameters specified.
+    /// The number of invocations for the function.
     ///
     /// - Parameters:
     ///     - forFunction: The name of the invoked function.
-    ///     - with:        An array containing the parameters of the invoked function.
     ///
-    /// - Returns: The number of invocations of the function with the parameters specified.
-    public func invocations(forFunction function: String, with parameters: [Any] = []) -> Int {
-        return invocations[function]?[getKey(for: parameters)] ?? 0
+    /// - Returns: The number of invocations of the function.
+    public func invocations(forFunction function: String) -> Int {
+        return invocations.filter({ $0.name == function }).count
     }
 
-    /// Was the function was invoked with the given parameters.
+    /// Was the function was invoked?
     ///
     /// - Parameters:
     ///     - function: The name of the invoked function.
-    ///     - with:     An array containing the parameters of the invoked function.
     ///
     /// - Returns: `true` if the number of invocations is one or more.
-    public func invoked(function: String, with parameters: [Any] = []) -> Bool {
-        return invocations(forFunction: function, with: parameters) > 0
+    public func invoked(function: String) -> Bool {
+        return invocations(forFunction: function) > 0
+    }
+
+    /// The parameters for a function invocation.
+    ///
+    /// - Parameters:
+    ///     - forFunction: The name of the invoked function.
+    ///     - invocation: The ordinal of the invocation (1-based, default 1)
+    /// - Returns: The parameters for the invocaton in an array
+    public func parameters(forFunction function: String, invocation: Int = 1) -> [Any?] {
+        let matchingInvocations = invocations.filter({ $0.name == function })
+        guard invocation > 0 && invocation <= matchingInvocations.count else { return [] }
+
+        return matchingInvocations[invocation - 1].parameters
     }
 
     /// Records that a function was invoked with the given parameters.
@@ -66,15 +77,8 @@ public class Moxie {
     /// - Parameters:
     ///     - function:      The name of the invoked function.
     ///     - wasCalledWith: An array containing the parameters of the invoked function.
-    public func record(function: String, wasCalledWith parameters: [Any] = []) {
-        let key = getKey(for: parameters)
-        if invocations[function] == nil {
-            invocations[function] = [key: 1]
-        } else if invocations[function]![key] == nil {
-            invocations[function]![key] = 1
-        } else {
-            invocations[function]![key]! += 1
-        }
+    public func record(function: String, wasCalledWith parameters: [Any?] = []) {
+        invocations.append(MockInvocation(name: function, parameters: parameters))
     }
 
     /// A description of interactions with the mocked function.
@@ -94,10 +98,10 @@ public class Moxie {
 
     private func getDescription(for function: String) -> String {
         let stubbingCount = stubbings[function]?.count ?? 0
-        let invocationCount = getInvocationCount(for: invocations[function])
+        let invocationCount = getInvocationCount(for: function)
         var summary = getDescriptionIntro(stubbings: stubbingCount, invocations: invocationCount)
         appendStubbingDescription(appendTo: &summary, function: stubbings[function])
-        appendInvocationDescription(appendTo: &summary, function: invocations[function])
+        appendInvocationDescription(appendTo: &summary, function: function)
         return summary
     }
 
@@ -108,27 +112,34 @@ public class Moxie {
     private func appendStubbingDescription(appendTo: inout String, function: Dictionary<String, Any>?) {
         if function?.count ?? 0 > 0 {
             let stubbingHeading = "\n\n  Stubbings:"
-            let stubbingsList = function?.reduce("") { initial, combine in
-                return initial + "\n  - When called with `\(combine.key)`, then return `\(combine.value)`."
+            let stubbingsList = function?.reduce("") { initial, current in
+                return initial + "\n  - When called with `\(current.key)`, then return `\(current.value)`."
                 } ?? ""
             appendTo = appendTo + stubbingHeading + stubbingsList
         }
     }
 
-    private func appendInvocationDescription(appendTo: inout String, function: Dictionary<String, Int>?) {
-        if function?.count ?? 0 > 0 {
+    private func appendInvocationDescription(appendTo: inout String, function: String) {
+        let invocations = self.invocations.filter({ $0.name == function })
+
+        if invocations.count > 0 {
             let invocationHeading = "\n\n  Invocations:"
-            let invocationsList = function?.reduce("") { initial, combine in
-                return initial + "\n  - Called with `\(combine.key)`\(combine.value == 1 ? "" : " x" + "\(combine.value)")."
-            } ?? ""
+            let invocationsList = invocations.reduce("") { initial, current in
+                let parameters = current.parameters.map { parameter -> String in
+                    if parameter != nil {
+                        return "\(parameter!)"
+                    } else {
+                        return "nil"
+                    }
+                }
+                return initial + "\n  - Called with `\(parameters)`."
+            }
             appendTo = appendTo + invocationHeading + invocationsList
         }
     }
 
-    private func getInvocationCount(for function: [String: Int]?) -> Int {
-        return function?.reduce(0) { initial, combine in
-            return initial + combine.value
-        } ?? 0
+    private func getInvocationCount(for function: String) -> Int {
+        return invocations.filter({ $0.name == function }).count
     }
 
     private func removeSequentialStubbing(forFunction function: String, whenCalledWith parameters: [Any]) {

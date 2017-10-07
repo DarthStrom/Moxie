@@ -40,6 +40,10 @@
 		96AA8F381F819C430083E2C5 /* Quick.framework in Copy Files [Carthage] */ = {isa = PBXBuildFile; fileRef = 96AA8F261F819BBD0083E2C5 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		96AA8F3C1F819C5D0083E2C5 /* Nimble.framework in Copy Files [Carthage] */ = {isa = PBXBuildFile; fileRef = 96AA8F291F819BC90083E2C5 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		96AA8F3D1F819C5D0083E2C5 /* Quick.framework in Copy Files [Carthage] */ = {isa = PBXBuildFile; fileRef = 96AA8F2A1F819BC90083E2C5 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		96AA8F431F819D690083E2C5 /* ArgumentCaptureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AA8F421F819D690083E2C5 /* ArgumentCaptureTests.swift */; };
+		96AA8F441F819D690083E2C5 /* ArgumentCaptureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AA8F421F819D690083E2C5 /* ArgumentCaptureTests.swift */; };
+		96AA8F451F819D690083E2C5 /* ArgumentCaptureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AA8F421F819D690083E2C5 /* ArgumentCaptureTests.swift */; };
+		96D2FA511F89969300A2CED5 /* MockInvocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D2FA501F89969300A2CED5 /* MockInvocation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +129,8 @@
 		96AA8F261F819BBD0083E2C5 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		96AA8F291F819BC90083E2C5 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/tvOS/Nimble.framework; sourceTree = "<group>"; };
 		96AA8F2A1F819BC90083E2C5 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/tvOS/Quick.framework; sourceTree = "<group>"; };
+		96AA8F421F819D690083E2C5 /* ArgumentCaptureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentCaptureTests.swift; sourceTree = "<group>"; };
+		96D2FA501F89969300A2CED5 /* MockInvocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockInvocation.swift; path = Moxie/MockInvocation.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		"_____Product_Moxie" /* Moxie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Moxie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -251,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				965F0DFD1EE392F50027E43D /* Mock.swift */,
+				96D2FA501F89969300A2CED5 /* MockInvocation.swift */,
 				965F0DFE1EE392F50027E43D /* Moxie.swift */,
 			);
 			name = Moxie;
@@ -264,6 +271,7 @@
 				965F0DF61EE3928E0027E43D /* MockTests.swift */,
 				965F0DF71EE3928E0027E43D /* StubbingTests.swift */,
 				965F0DF81EE3928E0027E43D /* VerificationTests.swift */,
+				96AA8F421F819D690083E2C5 /* ArgumentCaptureTests.swift */,
 			);
 			name = MoxieTests;
 			path = Tests/MoxieTests;
@@ -428,6 +436,7 @@
 				962BF90B1F4E64240095C294 /* ExplainTests.swift in Sources */,
 				962BF90C1F4E64240095C294 /* StubbingTests.swift in Sources */,
 				962BF90D1F4E64240095C294 /* MockTests.swift in Sources */,
+				96AA8F451F819D690083E2C5 /* ArgumentCaptureTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +448,7 @@
 				962BF92C1F57965C0095C294 /* ExplainTests.swift in Sources */,
 				962BF92D1F57965F0095C294 /* MockTests.swift in Sources */,
 				962BF92E1F5796620095C294 /* StubbingTests.swift in Sources */,
+				96AA8F441F819D690083E2C5 /* ArgumentCaptureTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +457,7 @@
 			buildActionMask = 0;
 			files = (
 				9683A8AB1F4E48C100352D96 /* Moxie.swift in Sources */,
+				96D2FA511F89969300A2CED5 /* MockInvocation.swift in Sources */,
 				9683A8AC1F4E48C100352D96 /* Mock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -477,6 +488,7 @@
 				96252BE31EE396A700BD038B /* ExplainTests.swift in Sources */,
 				96252BE11EE396A000BD038B /* StubbingTests.swift in Sources */,
 				96252BE21EE396A300BD038B /* MockTests.swift in Sources */,
+				96AA8F431F819D690083E2C5 /* ArgumentCaptureTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -70,7 +70,8 @@ class ExplainTests: XCTestCase {
             "This function has 0 stubbings and 2 invocations.\n" +
             "\n" +
             "  Invocations:\n" +
-            "  - Called with `[\"wednesday\"]` x2.",
+            "  - Called with `[\"wednesday\"]`.\n" +
+            "  - Called with `[\"wednesday\"]`.",
             subject.moxie.interactions(withFunction: "doIt"))
     }
 

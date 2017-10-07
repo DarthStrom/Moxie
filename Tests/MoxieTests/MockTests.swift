@@ -15,13 +15,10 @@ class MockTests: XCTestCase {
         subject.record(function: "something", wasCalledWith: [1, "5"])
         subject.record(function: "something")
 
-        XCTAssertEqual(1, subject.invocations(forFunction: "something", with: [1, "5"]))
-    }
-
-    func testInvocationCountForWrongParameters() {
-        subject.record(function: "something", wasCalledWith: [1, 2])
-
-        XCTAssertEqual(0, subject.invocations(forFunction: "something", with: [1, 3]))
+        XCTAssertEqual(2, subject.invocations(forFunction: "something"))
+        XCTAssertEqual(1, subject.parameters(forFunction: "something")[0] as? Int)
+        XCTAssertEqual("5", subject.parameters(forFunction: "something")[1] as? String)
+        XCTAssert(subject.parameters(forFunction: "something", invocation: 2).isEmpty)
     }
 
     func testVerifyReturnsTrueWhenFunctionWasCalled() {
@@ -37,13 +34,7 @@ class MockTests: XCTestCase {
     func testVerifyReturnsTrueWhenCalledWithMatchingParameters() {
         subject.record(function: "something", wasCalledWith: [1, "two"])
 
-        XCTAssertTrue(subject.invoked(function: "something", with: [1, "two"]))
-    }
-
-    func testVerifyReturnsFalseWhenCalledWithTheWrongParameters() {
-        subject.record(function: "something", wasCalledWith: ["One", 2])
-
-        XCTAssertFalse(subject.invoked(function: "something", with: [1, 2]))
+        XCTAssertTrue(subject.invoked(function: "something"))
     }
 
     func testStubbingWithNoReturnValue() {
