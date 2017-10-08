@@ -43,33 +43,20 @@ class MockTests: XCTestCase {
         XCTAssertNil(subject.noparams())
     }
 
-    func testStubbingNil() {
-        subject.stub(function: "noparams")
-
-        dump(subject.noparams())
-        XCTAssertNil(subject.noparams())
-    }
-
     func testStubbingSomething() {
         subject.stub(function: "noparams", return: "something")
 
         XCTAssertEqual("something", subject.noparams() as? String)
     }
 
-    func testStubbingWithParametersWithNoReturnValue() {
-        subject.stub(function: "twoparams", whenCalledWith: [2], return: 1)
-
-        XCTAssertNil(subject.twoparams(x: 1, y: 2))
-    }
-
     func testStubbingWithParametersWithNilReturnValue() {
-        subject.stub(function: "twoparams", whenCalledWith: [1, 2])
+        subject.stub(function: "twoparams")
 
         XCTAssertNil(subject.twoparams(x: 1, y: 2))
     }
 
     func testStubbingWithParametersWithAReturnValue() {
-        subject.stub(function: "twoparams", whenCalledWith: [2, 3], return: 5)
+        subject.stub(function: "twoparams", return: 5)
 
         XCTAssertEqual(5, subject.twoparams(x: 2, y: 3) as? Int)
     }
@@ -88,6 +75,6 @@ class Subject: Mock {
     }
 
     func twoparams(x: Int, y: Int) -> Any? {
-        return value(forFunction: "twoparams", whenCalledWith: [x, y])
+        return value(forFunction: "twoparams")
     }
 }

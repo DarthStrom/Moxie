@@ -37,7 +37,7 @@ struct MockList: Mock, List {
     }
 
     func get(_ index: Int) -> String? {
-        return value(forFunction: "get", whenCalledWith: [index])
+        return value(forFunction: "get")
     }
 }
 ```
@@ -53,16 +53,14 @@ func testList() {
     mockList.add("one")
     mockList.clear()
 
-    XCTAssertTrue(mockList.invoked(function: "add", with: ["one"]))
+    XCTAssertTrue(mockList.invoked(function: "add"))
+    XCTAssertEqual("one", mockList.parameters(forFunction: "add")[0] as? String)
     XCTAssertTrue(mockList.invoked(function: "clear"))
 
     // stubbing
-    mockList.stub(function: "get", whenCalledWith: [0], return: "first")
+    mockList.stub(function: "get", return: "first")
 
     XCTAssertEqual("first", mockList.get(0))
-
-    // nil because get(999) was not stubbed
-    XCTAssertNil(mockList.get(999))
 }
 ```
 

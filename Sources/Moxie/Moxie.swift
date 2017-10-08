@@ -1,6 +1,6 @@
 public class Moxie {
 
-    var stubbings = [String: [String: [Any]]]()
+    var stubbings = [String: [Any]]()
     var invocations = [MockInvocation]()
 
     public init() {}
@@ -9,16 +9,11 @@ public class Moxie {
     ///
     /// - Parameters:
     ///     - function:       The name of the stubbed function.
-    ///     - whenCalledWith: An array containing the parameters of the stubbed function call.
     ///     - return:         An array containing the values to return when the stubbed function is called.
     ///                             The last value is returned repeatedly therafter.  The default is `[]`.
-    public func stub(function: String, whenCalledWith parameters: [Any] = [], return values: [Any] = []) {
+    public func stub<T>(function: String, return values: [T] = []) {
         if !values.isEmpty {
-            if stubbings[function] == nil {
-                stubbings[function] = [getKey(for: parameters): values]
-            } else {
-                stubbings[function]![getKey(for: parameters)] = values
-            }
+            stubbings[function] = values
         }
     }
 
@@ -26,14 +21,13 @@ public class Moxie {
     ///
     /// - Parameters:
     ///     - forFunction:    The name of the stubbed function.
-    ///     - whenCalledWith: An array containing the parameters of the stubbed function call.
     ///
     /// - Returns: The previously specified value (via `stub`) for the function call or `nil` if none was specified.
-    public func value<T>(forFunction function: String, whenCalledWith parameters: [Any] = []) -> T? {
-        let values = stubbings[function]?[getKey(for: parameters)] as? [T]
+    public func value<T>(forFunction function: String) -> T? {
+        let values = stubbings[function] as? [T]
         if let value = values?.first {
-            removeSequentialStubbing(forFunction: function, whenCalledWith: parameters)
-            return getUnwrappedReturnValue(value: value)
+            removeSequentialStubbing(forFunction: function)
+            return value
         } else {
             return nil
         }
@@ -63,7 +57,7 @@ public class Moxie {
     ///
     /// - Parameters:
     ///     - forFunction: The name of the invoked function.
-    ///     - invocation: The ordinal of the invocation (1-based, default 1)
+    ///     - invocation: The ordinal number of the invocation (1-based, default 1)
     /// - Returns: The parameters for the invocaton in an array
     public func parameters(forFunction function: String, invocation: Int = 1) -> [Any?] {
         let matchingInvocations = invocations.filter({ $0.name == function })
@@ -92,15 +86,11 @@ public class Moxie {
 
     // MARK: - private
 
-    private func getKey(for parameters: [Any]) -> String {
-        return "\(parameters.description)"
-    }
-
     private func getDescription(for function: String) -> String {
         let stubbingCount = stubbings[function]?.count ?? 0
         let invocationCount = getInvocationCount(for: function)
         var summary = getDescriptionIntro(stubbings: stubbingCount, invocations: invocationCount)
-        appendStubbingDescription(appendTo: &summary, function: stubbings[function])
+        appendStubbingDescription(appendTo: &summary, stubbings: stubbings[function])
         appendInvocationDescription(appendTo: &summary, function: function)
         return summary
     }
@@ -109,11 +99,12 @@ public class Moxie {
         return "This function has \(stubbings) stubbing\(stubbings == 1 ? "" : "s") and \(invocations) invocation\(invocations == 1 ? "" : "s")."
     }
 
-    private func appendStubbingDescription(appendTo: inout String, function: Dictionary<String, Any>?) {
-        if function?.count ?? 0 > 0 {
+    private func appendStubbingDescription(appendTo: inout String, stubbings: [Any]?) {
+        if stubbings?.count ?? 0 > 0 {
             let stubbingHeading = "\n\n  Stubbings:"
-            let stubbingsList = function?.reduce("") { initial, current in
-                return initial + "\n  - When called with `\(current.key)`, then return `\(current.value)`."
+            let stubbingsList = stubbings?.reduce("") { initial, current in
+
+                return initial + "\n  - Return `\(current)`."
                 } ?? ""
             appendTo = appendTo + stubbingHeading + stubbingsList
         }
@@ -142,9 +133,9 @@ public class Moxie {
         return invocations.filter({ $0.name == function }).count
     }
 
-    private func removeSequentialStubbing(forFunction function: String, whenCalledWith parameters: [Any]) {
-        if let array = stubbings[function]?[getKey(for: parameters)], array.count > 1 {
-            stubbings[function]![getKey(for: parameters)]!.removeFirst()
+    private func removeSequentialStubbing(forFunction function: String) {
+        if let array = stubbings[function], array.count > 1 {
+            stubbings[function]!.removeFirst()
         }
     }
 
