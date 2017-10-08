@@ -39,39 +39,3 @@ class ExampleClassTests: XCTestCase {
     }
 }
 ```
-
-You can also stub for a specific set of arguments:
-
-```swift
-import Moxie
-import XCTest
-
-protocol ExampleProtocol {
-    func foo(id: Int, name: String) -> Bool
-}
-
-class ExampleClass {
-    func foo(id: Int, name: String) -> Bool {
-        return false
-    }
-}
-
-class MockExampleClass: ExampleProtocol, Mock {
-    var moxie = Moxie()
-
-    func foo(id: Int, name: String) -> Bool {
-        return value(forFunction: "foo", whenCalledWith: [id, name]) ?? false
-    }
-}
-
-class ExampleClassTests: XCTestCase {
-
-    let mock = MockExampleClass()
-
-    func testItWorks() {
-        mock.stub(function: "foo", whenCalledWith: [27, "George"], return: true)
-
-        XCTAssertTrue(mock.foo(id: 27, name: "George"))
-    }
-}
-```

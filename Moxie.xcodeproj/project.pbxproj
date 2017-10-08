@@ -28,6 +28,19 @@
 		9683A8B51F4E48E900352D96 /* Moxie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F0DFE1EE392F50027E43D /* Moxie.swift */; };
 		9683A8B61F4E48E900352D96 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F0DFD1EE392F50027E43D /* Mock.swift */; };
 		9683A8C91F4E55BC00352D96 /* Moxie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9683A8B11F4E48C100352D96 /* Moxie.framework */; };
+		96AA8F231F819B9E0083E2C5 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96AA8F211F819B9E0083E2C5 /* Quick.framework */; };
+		96AA8F241F819B9E0083E2C5 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96AA8F221F819B9E0083E2C5 /* Nimble.framework */; };
+		96AA8F271F819BBD0083E2C5 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96AA8F251F819BBD0083E2C5 /* Nimble.framework */; };
+		96AA8F281F819BBD0083E2C5 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96AA8F261F819BBD0083E2C5 /* Quick.framework */; };
+		96AA8F2B1F819BC90083E2C5 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96AA8F291F819BC90083E2C5 /* Nimble.framework */; };
+		96AA8F2C1F819BC90083E2C5 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96AA8F2A1F819BC90083E2C5 /* Quick.framework */; };
+		96AA8F321F819C120083E2C5 /* Nimble.framework in Copy Files [Carthage] */ = {isa = PBXBuildFile; fileRef = 96AA8F221F819B9E0083E2C5 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		96AA8F331F819C120083E2C5 /* Quick.framework in Copy Files [Carthage] */ = {isa = PBXBuildFile; fileRef = 96AA8F211F819B9E0083E2C5 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		96AA8F371F819C430083E2C5 /* Nimble.framework in Copy Files [Carthage] */ = {isa = PBXBuildFile; fileRef = 96AA8F251F819BBD0083E2C5 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		96AA8F381F819C430083E2C5 /* Quick.framework in Copy Files [Carthage] */ = {isa = PBXBuildFile; fileRef = 96AA8F261F819BBD0083E2C5 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		96AA8F3C1F819C5D0083E2C5 /* Nimble.framework in Copy Files [Carthage] */ = {isa = PBXBuildFile; fileRef = 96AA8F291F819BC90083E2C5 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		96AA8F3D1F819C5D0083E2C5 /* Quick.framework in Copy Files [Carthage] */ = {isa = PBXBuildFile; fileRef = 96AA8F2A1F819BC90083E2C5 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		96D2FA511F89969300A2CED5 /* MockInvocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D2FA501F89969300A2CED5 /* MockInvocation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +67,45 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		96AA8F2D1F819BD60083E2C5 /* Copy Files [Carthage] */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				96AA8F321F819C120083E2C5 /* Nimble.framework in Copy Files [Carthage] */,
+				96AA8F331F819C120083E2C5 /* Quick.framework in Copy Files [Carthage] */,
+			);
+			name = "Copy Files [Carthage]";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96AA8F341F819C330083E2C5 /* Copy Files [Carthage] */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				96AA8F371F819C430083E2C5 /* Nimble.framework in Copy Files [Carthage] */,
+				96AA8F381F819C430083E2C5 /* Quick.framework in Copy Files [Carthage] */,
+			);
+			name = "Copy Files [Carthage]";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96AA8F3B1F819C500083E2C5 /* Copy Files [Carthage] */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				96AA8F3C1F819C5D0083E2C5 /* Nimble.framework in Copy Files [Carthage] */,
+				96AA8F3D1F819C5D0083E2C5 /* Quick.framework in Copy Files [Carthage] */,
+			);
+			name = "Copy Files [Carthage]";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		96252BE41EE396C900BD038B /* Moxie macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Moxie macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96252BE51EE3971200BD038B /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Moxie.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
@@ -68,7 +120,13 @@
 		965F0DFE1EE392F50027E43D /* Moxie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Moxie.swift; path = Moxie/Moxie.swift; sourceTree = "<group>"; };
 		9683A8B11F4E48C100352D96 /* Moxie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Moxie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9683A8BB1F4E48E900352D96 /* Moxie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Moxie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		96AA8F211F819B9E0083E2C5 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = "<group>"; };
+		96AA8F221F819B9E0083E2C5 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
+		96AA8F251F819BBD0083E2C5 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		96AA8F261F819BBD0083E2C5 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
+		96AA8F291F819BC90083E2C5 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/tvOS/Nimble.framework; sourceTree = "<group>"; };
+		96AA8F2A1F819BC90083E2C5 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/tvOS/Quick.framework; sourceTree = "<group>"; };
+		96D2FA501F89969300A2CED5 /* MockInvocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockInvocation.swift; path = Moxie/MockInvocation.swift; sourceTree = "<group>"; };
 		"_____Product_Moxie" /* Moxie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Moxie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -78,6 +136,8 @@
 			buildActionMask = 0;
 			files = (
 				962BF91C1F5736F50095C294 /* Moxie.framework in Frameworks */,
+				96AA8F2B1F819BC90083E2C5 /* Nimble.framework in Frameworks */,
+				96AA8F2C1F819BC90083E2C5 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +146,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				962BF92B1F57964A0095C294 /* Moxie.framework in Frameworks */,
+				96AA8F271F819BBD0083E2C5 /* Nimble.framework in Frameworks */,
+				96AA8F281F819BBD0083E2C5 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,12 +177,27 @@
 			buildActionMask = 0;
 			files = (
 				9683A8C91F4E55BC00352D96 /* Moxie.framework in Frameworks */,
+				96AA8F231F819B9E0083E2C5 /* Quick.framework in Frameworks */,
+				96AA8F241F819B9E0083E2C5 /* Nimble.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		96AA8F201F819B9E0083E2C5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				96AA8F291F819BC90083E2C5 /* Nimble.framework */,
+				96AA8F2A1F819BC90083E2C5 /* Quick.framework */,
+				96AA8F251F819BBD0083E2C5 /* Nimble.framework */,
+				96AA8F261F819BBD0083E2C5 /* Quick.framework */,
+				96AA8F221F819B9E0083E2C5 /* Nimble.framework */,
+				96AA8F211F819B9E0083E2C5 /* Quick.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		TestProducts_ /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,11 +209,11 @@
 			isa = PBXGroup;
 			children = (
 				962BF9301F57A5730095C294 /* Moxie_Info.plist */,
-				__PBXFileRef_Package.swift /* Package.swift */,
 				"_____Configs_" /* Configs */,
 				"_____Sources_" /* Sources */,
 				"_______Tests_" /* Tests */,
 				"____Products_" /* Products */,
+				96AA8F201F819B9E0083E2C5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -174,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				965F0DFD1EE392F50027E43D /* Mock.swift */,
+				96D2FA501F89969300A2CED5 /* MockInvocation.swift */,
 				965F0DFE1EE392F50027E43D /* Moxie.swift */,
 			);
 			name = Moxie;
@@ -209,6 +287,7 @@
 			buildPhases = (
 				962BF9091F4E64240095C294 /* Sources */,
 				962BF90E1F4E64240095C294 /* Frameworks */,
+				96AA8F3B1F819C500083E2C5 /* Copy Files [Carthage] */,
 			);
 			buildRules = (
 			);
@@ -226,6 +305,7 @@
 			buildPhases = (
 				962BF91D1F5741A50095C294 /* Sources */,
 				962BF91E1F5741A50095C294 /* Frameworks */,
+				96AA8F341F819C330083E2C5 /* Copy Files [Carthage] */,
 			);
 			buildRules = (
 			);
@@ -291,6 +371,7 @@
 			buildPhases = (
 				CompilePhase_MoxieTests /* Sources */,
 				"___LinkPhase_MoxieTests" /* Frameworks */,
+				96AA8F2D1F819BD60083E2C5 /* Copy Files [Carthage] */,
 			);
 			buildRules = (
 			);
@@ -309,7 +390,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 9999;
+				LastUpgradeCheck = 0900;
 				TargetAttributes = {
 					962BF9201F5741A50095C294 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -367,6 +448,7 @@
 			buildActionMask = 0;
 			files = (
 				9683A8AB1F4E48C100352D96 /* Moxie.swift in Sources */,
+				96D2FA511F89969300A2CED5 /* MockInvocation.swift in Sources */,
 				9683A8AC1F4E48C100352D96 /* Mock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,14 +506,18 @@
 		962BF9111F4E64240095C294 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
@@ -449,14 +535,18 @@
 		962BF9121F4E64240095C294 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -496,6 +586,10 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -547,6 +641,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -633,7 +731,11 @@
 		_ReleaseConf_MoxieTests /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/../Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pillartechnology.Moxie-macOS-Tests";
@@ -661,7 +763,11 @@
 		"___DebugConf_MoxieTests" /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/../Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pillartechnology.Moxie-macOS-Tests";
@@ -676,22 +782,76 @@
 		"_____Release_" /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "$(PROJECT_FILE_PATH)/Moxie_Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME)";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
 		"_______Debug_" /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "$(PROJECT_FILE_PATH)/Moxie_Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME)";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};

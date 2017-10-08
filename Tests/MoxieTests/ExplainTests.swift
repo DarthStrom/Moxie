@@ -21,20 +21,19 @@ class ExplainTests: XCTestCase {
             "This function has 1 stubbing and 0 invocations.\n" +
             "\n" +
             "  Stubbings:\n" +
-            "  - When called with `[]`, then return `[\"it\"]`.",
+            "  - Return `it`.",
             subject.moxie.interactions(withFunction: "returnIt"))
     }
 
     func testExplainWithMultipleStubbings() {
-        subject.moxie.stub(function: "mirror", whenCalledWith: ["me"], return: ["me"])
-        subject.moxie.stub(function: "mirror", whenCalledWith: ["you"], return: ["you"])
+        subject.moxie.stub(function: "mirror", return: ["me", "you"])
 
         XCTAssertEqual(
             "This function has 2 stubbings and 0 invocations.\n" +
             "\n" +
             "  Stubbings:\n" +
-            "  - When called with `[\"me\"]`, then return `[\"me\"]`.\n" +
-            "  - When called with `[\"you\"]`, then return `[\"you\"]`.",
+            "  - Return `me`.\n" +
+            "  - Return `you`.",
             subject.moxie.interactions(withFunction: "mirror"))
     }
 
@@ -70,13 +69,13 @@ class ExplainTests: XCTestCase {
             "This function has 0 stubbings and 2 invocations.\n" +
             "\n" +
             "  Invocations:\n" +
-            "  - Called with `[\"wednesday\"]` x2.",
+            "  - Called with `[\"wednesday\"]`.\n" +
+            "  - Called with `[\"wednesday\"]`.",
             subject.moxie.interactions(withFunction: "doIt"))
     }
 
     func testExplainWithBothStubbingsAndInvocations() {
-        subject.moxie.stub(function: "mirror", whenCalledWith: ["Michael Jackson"], return: ["man"])
-        subject.moxie.stub(function: "mirror", whenCalledWith: ["man"], return: ["Michael Jackson"])
+        subject.moxie.stub(function: "mirror", return: ["man", "Michael Jackson"])
 
         subject.mirror("thursday")
 
@@ -84,8 +83,8 @@ class ExplainTests: XCTestCase {
             "This function has 2 stubbings and 1 invocation.\n" +
             "\n" +
             "  Stubbings:\n" +
-            "  - When called with `[\"Michael Jackson\"]`, then return `[\"man\"]`.\n" +
-            "  - When called with `[\"man\"]`, then return `[\"Michael Jackson\"]`.\n" +
+            "  - Return `man`.\n" +
+            "  - Return `Michael Jackson`.\n" +
             "\n" +
             "  Invocations:\n" +
             "  - Called with `[\"thursday\"]`.",
