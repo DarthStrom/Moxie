@@ -114,6 +114,9 @@
 		962BF9131F4E64240095C294 /* Moxie tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Moxie tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		962BF9211F5741A50095C294 /* Moxie iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Moxie iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		962BF9301F57A5730095C294 /* Moxie_Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Moxie_Info.plist; path = Moxie.xcodeproj/Moxie_Info.plist; sourceTree = "<group>"; };
+		9634D6F62239EB9A00092894 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		9634D6F72239EBB600092894 /* LinuxMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LinuxMain.swift; path = Tests/LinuxMain.swift; sourceTree = "<group>"; };
+		9634D6F82239ECB200092894 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		965F0DF51EE3928E0027E43D /* ExplainTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExplainTests.swift; path = Tests/MoxieTests/ExplainTests.swift; sourceTree = SOURCE_ROOT; };
 		965F0DF61EE3928E0027E43D /* MockTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockTests.swift; path = Tests/MoxieTests/MockTests.swift; sourceTree = SOURCE_ROOT; };
 		965F0DF71EE3928E0027E43D /* StubbingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StubbingTests.swift; path = Tests/MoxieTests/StubbingTests.swift; sourceTree = SOURCE_ROOT; };
@@ -210,6 +213,7 @@
 		"___RootGroup_" = {
 			isa = PBXGroup;
 			children = (
+				9634D6F62239EB9A00092894 /* Package.swift */,
 				962BF9301F57A5730095C294 /* Moxie_Info.plist */,
 				"_____Configs_" /* Configs */,
 				"_____Sources_" /* Sources */,
@@ -267,6 +271,7 @@
 				965F0DF61EE3928E0027E43D /* MockTests.swift */,
 				965F0DF71EE3928E0027E43D /* StubbingTests.swift */,
 				965F0DF81EE3928E0027E43D /* VerificationTests.swift */,
+				9634D6F82239ECB200092894 /* XCTestManifests.swift */,
 			);
 			name = MoxieTests;
 			path = Tests/MoxieTests;
@@ -275,6 +280,7 @@
 		"_______Tests_" /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				9634D6F72239EBB600092894 /* LinuxMain.swift */,
 				"_______Group_MoxieTests" /* MoxieTests */,
 			);
 			name = Tests;
