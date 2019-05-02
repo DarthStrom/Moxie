@@ -1,6 +1,6 @@
 language: objective-c
-osx_image: xcode8
-script:
-  - carthage bootstrap --platform Mac
-  - xcodebuild -scheme Moxie-macOS build test
-
+osx_image: xcode10.2
+xcode_project: Moxie.xcodeproj
+xcode_scheme: Moxie-macOS
+xcode_destination: platform=macOS
+install: carthage bootstrap --platform Mac
