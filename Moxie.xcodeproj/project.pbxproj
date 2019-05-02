@@ -623,7 +623,6 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -671,7 +670,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -736,7 +734,6 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = Moxie;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -768,7 +765,6 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = Moxie;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
