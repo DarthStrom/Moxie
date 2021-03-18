@@ -30,3 +30,10 @@ target 'CoolProjUnitTests' do
 end
 ```
 3. Install your new dependency with `pod install`.
+
+## Swift Package Manager
+
+1. In Xcode, go to File -> Swift Packages -> Add Package Dependency...
+2. Enter the repository URL: `https://github.com/DarthStrom/Moxie.git`
+3. Select the version/branch/commit to use
+4. Change the target to be your test target.
